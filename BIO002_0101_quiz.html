@@ -18,7 +18,7 @@
     min-height: 100vh;
   }
 
-  /* === Card Container === */
+  /* === Quiz Card === */
   .quiz-container {
     background: #ffffff;
     border-radius: 18px;
@@ -46,7 +46,6 @@
     overflow: hidden;
     box-shadow: inset 0 1px 4px rgba(0,0,0,0.1);
   }
-
   .progress-bar {
     height: 100%;
     background: linear-gradient(to right, #136f63, #2b7de9);
@@ -54,7 +53,6 @@
     transition: width 0.4s ease;
     border-radius: 8px;
   }
-
   .progress-text {
     text-align: right;
     font-size: 0.95em;
@@ -63,20 +61,19 @@
     font-weight: 600;
   }
 
+  /* === Questions === */
   .question {
     font-size: 1.3em;
     font-weight: 600;
     color: #174ea6;
     margin-bottom: 20px;
   }
-
   .choices {
     display: flex;
     flex-direction: column;
     gap: 12px;
     margin-bottom: 25px;
   }
-
   .choice {
     background: #e8ecf8;
     border: none;
@@ -90,6 +87,7 @@
   .choice:hover { background: #d3dbf8; transform: translateY(-2px); }
   .choice.selected { background: #174ea6; color: #fff; transform: scale(1.02); }
 
+  /* === Buttons === */
   .next-btn {
     background: #136f63;
     color: #fff;
@@ -103,11 +101,29 @@
   }
   .next-btn:hover { background: #0f5b52; }
 
+  /* === Result Section === */
   .result {
     font-size: 1.4em;
     font-weight: bold;
     color: #174ea6;
     margin-top: 20px;
+  }
+
+  .stars {
+    font-size: 2.5em;
+    margin-top: 10px;
+    margin-bottom: 5px;
+  }
+
+  .star {
+    color: #ccc;
+    transition: transform 0.3s ease, color 0.3s ease;
+  }
+
+  .star.gold {
+    color: gold;
+    text-shadow: 0 0 8px rgba(255, 215, 0, 0.6);
+    transform: scale(1.1);
   }
 
   .quiz-nav {
@@ -135,6 +151,7 @@
   @media (max-width: 600px) {
     .quiz-container { padding: 25px; }
     .question { font-size: 1.1em; }
+    .stars { font-size: 2em; }
   }
 </style>
 </head>
@@ -200,23 +217,41 @@
   });
 
   function updateProgress() {
-    const percent = ((current) / quizData.length) * 100;
+    const percent = (current / quizData.length) * 100;
     progressBar.style.width = percent + "%";
     progressText.textContent = `Question ${current + 1} of ${quizData.length}`;
+  }
+
+  function showStars(percent) {
+    let starsHTML = "";
+    if (percent === 100) starsHTML = "⭐️⭐️⭐️";
+    else if (percent >= 90) starsHTML = "⭐️⭐️☆";
+    else if (percent >= 80) starsHTML = "⭐️☆☆";
+    else starsHTML = "☆☆☆";
+    return starsHTML;
   }
 
   function showResult() {
     progressBar.style.width = "100%";
     progressText.textContent = "Quiz Completed";
+
     const percent = Math.round((score / quizData.length) * 100);
     const passed = percent >= 80;
+
     quizBox.innerHTML = `
-      <div class='result'>🎉 You scored ${score} / ${quizData.length} (${percent}%)</div>
+      <div class='stars' id='stars'>${showStars(percent)}</div>
+      <div class='result'>You scored ${score}/${quizData.length} (${percent}%)</div>
       <div class='quiz-nav'>
         <button class='quiz-btn' id='backBtn'>⬅ Back</button>
         <button class='quiz-btn' id='retryBtn'>🔁 Retry</button>
         <button class='quiz-btn primary' id='nextLessonBtn' ${passed ? "" : "disabled"}>➡ Next Lesson</button>
       </div>`;
+
+    // Animate stars
+    document.querySelectorAll('.stars .star').forEach((s, i) => {
+      setTimeout(() => s.classList.add('gold'), 200 * i);
+    });
+
     nextBtn.style.display = "none";
     window.parent.postMessage({ type: "quizResult", score: percent, passed }, "*");
 
