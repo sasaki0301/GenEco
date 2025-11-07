@@ -122,28 +122,58 @@
     * { box-sizing: border-box; scroll-behavior: smooth; }
     .content-flex {
       display: flex;
-      flex-wrap: wrap; /* ensures responsiveness */
       justify-content: center;
-      align-items: flex-start;
-      gap: 20px;
+      align-items: stretch; /* ensures both image and table stretch to same height */
+      gap: 30px;
       margin: 20px 0;
+      flex-wrap: wrap; /* keeps it mobile responsive */
     }
 
-    .content-flex .image-side {
+    /* Left side: image container */
+    .image-side {
       flex: 1;
-      text-align: center;
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
 
-    .content-flex .image-side img {
-      max-width: 100%;
-      width: 320px; /* adjust as needed */
-      border-radius: 10px;
+    .image-side img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover; /* fills height while maintaining aspect ratio */
+      max-height: 100%;
+      border-radius: 12px;
       box-shadow: 0 4px 12px rgba(0,0,0,0.1);
     }
 
-    .content-flex .table-side {
-      flex: 2;
+  /* Right side: table container */
+    .table-side {
+      flex: 1.2;
+      display: flex;
+      align-items: stretch;
     }
+
+    .table-side table {
+      width: 100%;
+      height: 100%;
+      border-collapse: collapse;
+      border-radius: 8px;
+      overflow: hidden;
+      background: #fff;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    }
+  
+    .table-side th, .table-side td {
+      padding: 10px 12px;
+      border-bottom: 1px solid #f0f0f0;
+      font-size: 18px;
+    }
+
+    .table-side th {
+      background: #f3f7ff;
+      color: #174ea6;
+    }
+
 
   </style>
 </head>
@@ -164,29 +194,30 @@
     <h3 style="text-align:center;">Common list of levels (small → large)</h3>
 
     <div class="content-flex">
-    <div class="image-side">
-    <img src="https://media.istockphoto.com/id/2187453775/vector/diagram-of-hierarchical-structure-of-life.jpg?s=612x612&w=0&k=20&c=GEeqsjMgZ70J2yfSrU0zK8R4ZeKDML_0v1w4IDd5JFg=" 
+      <div class="image-side">
+      <img src="https://media.istockphoto.com/id/2187453775/vector/diagram-of-hierarchical-structure-of-life.jpg?s=612x612&w=0&k=20&c=GEeqsjMgZ70J2yfSrU0zK8R4ZeKDML_0v1w4IDd5JFg=" 
          alt="Levels of Organization" />
+      </div>
+
+      <div class="table-side">
+        <table class="org">
+          <tr><th>Level</th><th>Description (simple)</th></tr>
+          <tr><td>Atom</td><td>Smallest unit of an element (e.g., C, H, O).</td></tr>
+          <tr><td>Molecule</td><td>Two or more atoms bonded (e.g., water, DNA).</td></tr>
+          <tr><td>Organelle</td><td>Functional parts inside a cell (e.g., nucleus, mitochondrion).</td></tr>
+          <tr><td>Cell</td><td>Basic unit of life — smallest structure capable of independent life.</td></tr>
+          <tr><td>Tissue</td><td>Group of similar cells performing a function (e.g., muscle tissue).</td></tr>
+          <tr><td>Organ</td><td>Collection of tissues working together (e.g., heart, leaf).</td></tr>
+          <tr><td>Organ system</td><td>Organs cooperating for a task (e.g., circulatory system).</td></tr>
+          <tr><td>Organism</td><td>A single living individual (e.g., a human, an oak tree).</td></tr>
+          <tr><td>Population</td><td>Group of organisms of the same species in an area.</td></tr>
+          <tr><td>Community</td><td>All populations interacting in an area (different species).</td></tr>
+          <tr><td>Ecosystem</td><td>Community + physical environment (energy and nutrient flows).</td></tr>
+          <tr><td>Biosphere</td><td>All ecosystems on Earth — the zone of life.</td></tr>
+        </table>
+      </div>
     </div>
 
-    <div class="table-side">
-      <table class="org">
-        <tr><th>Level</th><th>Description (simple)</th></tr>
-        <tr><td>Atom</td><td>Smallest unit of an element (e.g., C, H, O).</td></tr>
-        <tr><td>Molecule</td><td>Two or more atoms bonded (e.g., water, DNA).</td></tr>
-        <tr><td>Organelle</td><td>Functional parts inside a cell (e.g., nucleus, mitochondrion).</td></tr>
-        <tr><td>Cell</td><td>Basic unit of life — smallest structure capable of independent life.</td></tr>
-        <tr><td>Tissue</td><td>Group of similar cells performing a function (e.g., muscle tissue).</td></tr>
-        <tr><td>Organ</td><td>Collection of tissues working together (e.g., heart, leaf).</td></tr>
-        <tr><td>Organ system</td><td>Organs cooperating for a task (e.g., circulatory system).</td></tr>
-        <tr><td>Organism</td><td>A single living individual (e.g., a human, an oak tree).</td></tr>
-        <tr><td>Population</td><td>Group of organisms of the same species in an area.</td></tr>
-        <tr><td>Community</td><td>All populations interacting in an area (different species).</td></tr>
-        <tr><td>Ecosystem</td><td>Community + physical environment (energy and nutrient flows).</td></tr>
-        <tr><td>Biosphere</td><td>All ecosystems on Earth — the zone of life.</td></tr>
-      </table>
-    </div>
-    </div>
   </div>
 
   <!-- 2. Emergent properties -->
