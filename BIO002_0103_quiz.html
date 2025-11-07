@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Chapter 1 – Lesson 3 Quiz: Nutrition and Gas Exchange</title>
+  <style>
+    body {
+      font-family: "Segoe UI", Arial, sans-serif;
+      background: linear-gradient(135deg, #e8f9f1, #f7faff);
+      margin: 0;
+      padding: 0;
+      color: #333;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+      min-height: 100vh;
+    }
+    .quiz-container {
+      width: 90%;
+      max-width: 850px;
+      background: #fff;
+      border-radius: 20px;
+      padding: 40px;
+      box-shadow: 0 6px 30px rgba(0,0,0,0.1);
+      text-align: center;
+    }
+    h2 {
+      color: #136f63;
+      margin-bottom: 20px;
+    }
+    .question {
+      font-size: 24px;
+      margin-bottom: 18px;
+      font-weight: 600;
+      color: #174ea6;
+    }
+    .choices {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+    .choice {
+      width: 100%;
+      max-width: 520px;
+      background: #e8ecf8;
+      border: none;
+      border-radius: 10px;
+      padding: 14px 18px;
+      cursor: pointer;
+      text-align: left;
+      font-size: 20px;
+      transition: all 0.2s ease;
+    }
+    .choice:hover {
+      background: #d3dbf8;
+      transform: translateY(-2px);
+    }
+    .choice.selected {
+      background: #174ea6;
+      color: #fff;
+      transform: scale(1.02);
+    }
+    .next-btn {
+      background: #136f63;
+      color: #fff;
+      border: none;
+      padding: 12px 24px;
+      border-radius: 8px;
+      font-size: 20px;
+      cursor: pointer;
+      margin-top: 10px;
+      transition: 0.2s;
+    }
+    .next-btn:hover {
+      background: #0f5b52;
+    }
+    .progress-bar {
+      width: 100%;
+      background: #eef3ff;
+      border-radius: 10px;
+      height: 12px;
+      margin: 20px 0;
+      overflow: hidden;
+    }
+    .progress {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, #136f63, #2b7de9);
+      transition: width 0.3s ease;
+    }
+    .stars {
+      margin: 20px 0;
+      font-size: 38px;
+    }
+    .star {
+      color: gold;
+      margin: 0 3px;
+    }
+    .star.grey {
+      color: #ccc;
+    }
+    .result {
+      font-size: 26px;
+      font-weight: bold;
+      color: #174ea6;
+      margin-top: 20px;
+    }
+    .quiz-nav {
+      margin-top: 24px;
+    }
+    .quiz-btn {
+      background: #e8ecf8;
+      color: #174ea6;
+      border: none;
+      border-radius: 8px;
+      padding: 10px 20px;
+      font-size: 17px;
+      margin: 5px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .quiz-btn:hover {
+      background: #d3dbf8;
+      transform: translateY(-2px);
+    }
+    .quiz-btn.primary {
+      background: #136f63;
+      color: #fff;
+    }
+    .quiz-btn.primary:hover {
+      background: #0f5b52;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="quiz-container">
+    <h2>Lesson 3 Quiz – Nutrition and Gas Exchange</h2>
+    <div class="progress-bar"><div class="progress" id="progress"></div></div>
+    <div id="quizBox"></div>
+    <button id="nextBtn" class="next-btn" style="display:none;">Next</button>
+  </div>
+
+  <script>
+    const quizData = [
+      { q: "1. What is the main purpose of nutrition in living organisms?", 
+        c: ["To provide energy and materials for growth and repair", "To remove carbon dioxide from the body", "To help plants release oxygen", "To control body temperature"],
+        a: 0 },
+      { q: "2. Which statement best describes autotrophic nutrition?", 
+        c: ["Organisms rely on others for food", "Organisms make their own food using sunlight and inorganic materials", "Organisms absorb nutrients from decaying matter", "Organisms live inside a host"],
+        a: 1 },
+      { q: "3. Which of the following is NOT a type of heterotrophic nutrition?", 
+        c: ["Holozoic", "Saprophytic", "Photosynthetic", "Parasitic"],
+        a: 2 },
+      { q: "4. In holozoic nutrition, which process occurs first?", 
+        c: ["Assimilation", "Ingestion", "Absorption", "Egestion"],
+        a: 1 },
+      { q: "5. Which organism shows saprophytic nutrition?", 
+        c: ["Cow", "Mushroom", "Tapeworm", "Human"],
+        a: 1 },
+      { q: "6. What is the main function of alveoli in the human lungs?", 
+        c: ["Pump air into the lungs", "Produce mucus for protection", "Exchange oxygen and carbon dioxide by diffusion", "Store oxygen temporarily"],
+        a: 2 },
+      { q: "7. How do photosynthesis and respiration complement each other?", 
+        c: ["Both use carbon dioxide and produce oxygen", "The gases produced by one are used by the other", "Both release energy in the form of light", "They are identical processes occurring in opposite directions"],
+        a: 1 },
+      { q: "8. Which type of holozoic organism eats both plants and animals?", 
+        c: ["Herbivore", "Carnivore", "Omnivore", "Detritivore"],
+        a: 2 },
+      { q: "9. What structures allow plants to exchange gases?", 
+        c: ["Chloroplasts", "Stomata", "Roots", "Lenticels only"],
+        a: 1 },
+      { q: "10. In animals, gas exchange is mainly needed to:", 
+        c: ["Obtain carbon dioxide for photosynthesis", "Release energy by respiration", "Remove oxygen from cells", "Absorb sunlight for energy"],
+        a: 1 }
+    ];
+
+    let current = 0, score = 0, selected = null;
+    const quizBox = document.getElementById("quizBox");
+    const nextBtn = document.getElementById("nextBtn");
+    const progress = document.getElementById("progress");
+
+    function showQuestion() {
+      const q = quizData[current];
+      quizBox.innerHTML = `<div class='question'>${q.q}</div><div class='choices'></div>`;
+      const choicesContainer = quizBox.querySelector(".choices");
+      q.c.forEach((choice, i) => {
+        const btn = document.createElement("button");
+        btn.className = "choice";
+        btn.innerHTML = choice;
+        btn.addEventListener("click", () => selectChoice(i));
+        choicesContainer.appendChild(btn);
+      });
+      nextBtn.style.display = "none";
+      selected = null;
+      updateProgress();
+    }
+
+    function selectChoice(i) {
+      selected = i;
+      document.querySelectorAll(".choice").forEach((btn, idx) =>
+        btn.classList.toggle("selected", idx === i)
+      );
+      nextBtn.style.display = "inline-block";
+    }
+
+    function updateProgress() {
+      const percent = ((current) / quizData.length) * 100;
+      progress.style.width = percent + "%";
+    }
+
+    nextBtn.addEventListener("click", () => {
+      if (selected === quizData[current].a) score++;
+      current++;
+      if (current < quizData.length) showQuestion(); 
+      else showResult();
+    });
+
+    function showResult() {
+      const percent = Math.round((score / quizData.length) * 100);
+      const stars = document.createElement("div");
+      stars.className = "stars";
+
+      let starHTML = "";
+      if (percent === 100) starHTML = "🌟🌟🌟";
+      else if (percent >= 90) starHTML = "🌟🌟⚫";
+      else if (percent >= 80) starHTML = "🌟⚫⚫";
+      else starHTML = "⚫⚫⚫";
+
+      stars.innerHTML = starHTML;
+      const passed = percent >= 80;
+
+      quizBox.innerHTML = `
+        <div class='result'>You scored ${score} out of ${quizData.length} (${percent}%)</div>
+      `;
+      quizBox.appendChild(stars);
+
+      const nav = document.createElement("div");
+      nav.className = "quiz-nav";
+      nav.innerHTML = `
+        <button class='quiz-btn' id='backBtn'>⬅ Back</button>
+        <button class='quiz-btn' id='retryBtn'>🔁 Retry</button>
+        <button class='quiz-btn primary' id='nextLessonBtn' ${passed ? "" : "disabled"}>➡ Next Lesson</button>
+      `;
+      quizBox.appendChild(nav);
+      nextBtn.style.display = "none";
+      progress.style.width = "100%";
+
+      window.parent.postMessage({ type: "quizResult", score: percent, passed }, "*");
+
+      document.getElementById("retryBtn").addEventListener("click", retryQuiz);
+      document.getElementById("backBtn").addEventListener("click", () => {
+        window.parent.postMessage({ type: "quizBack" }, "*");
+      });
+      document.getElementById("nextLessonBtn").addEventListener("click", () => {
+        if (passed) window.parent.postMessage({ type: "quizNextLesson" }, "*");
+      });
+    }
+
+    function retryQuiz() {
+      current = 0;
+      score = 0;
+      showQuestion();
+    }
+
+    showQuestion();
+  </script>
+</body>
+</html>
