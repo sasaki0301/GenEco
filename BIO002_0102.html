@@ -160,6 +160,18 @@
         object-fit: contain;
       }
     }
+    .gif {
+      text-align: center;
+      margin: 16px 0;
+    }
+
+    .gif img {
+      width: 100%;
+      max-width: 480px; /* adjust as you like */
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    }
+
   </style>
 </head>
 
@@ -212,8 +224,8 @@
     <div class="activity">
       <h3>Activity 1: Identify the Characteristic</h3>
       <p>A sunflower turns toward sunlight every morning. Which characteristic of life does this show?</p>
-        <div class="video">
-          <iframe src="https://i.pinimg.com/originals/f3/06/9d/f3069d5f9f642a75a2503c1e6eac9fce.gif"></iframe>
+        <div class="gif">
+          <img src="https://i.pinimg.com/originals/f3/06/9d/f3069d5f9f642a75a2503c1e6eac9fce.gif" alt="Sunflower turning toward sunlight" />
         </div>
       <button class="toggle-btn" onclick="toggleAnswer(this)">Show Answer</button>
       <div class="answer">
@@ -224,8 +236,8 @@
     <div class="activity">
       <h3>Activity 2: Critical Thinking</h3>
       <p>A car can move and use energy (fuel), but it is not alive. Which characteristics of life does it lack?</p>
-      <div class="video">
-          <iframe src="https://cdn.dribbble.com/userupload/32939760/file/original-08338c7a0fac84174420ec2f68b10add.gif"></iframe>
+      <div class="gif">
+        <img src="https://cdn.dribbble.com/userupload/32939760/file/original-08338c7a0fac84174420ec2f68b10add.gif" alt="Car animation" />
       </div>
       <button class="toggle-btn" onclick="toggleAnswer(this)">Show Answer</button>
       <div class="answer">
