@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Chapter 1 – Lesson 1 Quiz: Levels of Biological Organization</title>
 <style>
-  /* === Background & Base === */
+  /* === Base Page === */
   body {
     font-family: "Segoe UI", Arial, sans-serif;
     background: linear-gradient(135deg, #e8f9f1, #f7faff);
@@ -27,12 +27,40 @@
     width: 95%;
     max-width: 850px;
     text-align: center;
+    position: relative;
   }
 
   h2 {
     color: #136f63;
     margin-bottom: 25px;
     font-size: 1.8em;
+  }
+
+  /* === Progress Bar === */
+  .progress-wrapper {
+    background: #e9f5ef;
+    border-radius: 8px;
+    height: 14px;
+    width: 100%;
+    margin-bottom: 25px;
+    overflow: hidden;
+    box-shadow: inset 0 1px 4px rgba(0,0,0,0.1);
+  }
+
+  .progress-bar {
+    height: 100%;
+    background: linear-gradient(to right, #136f63, #2b7de9);
+    width: 0%;
+    transition: width 0.4s ease;
+    border-radius: 8px;
+  }
+
+  .progress-text {
+    text-align: right;
+    font-size: 0.95em;
+    color: #174ea6;
+    margin-bottom: 10px;
+    font-weight: 600;
   }
 
   .question {
@@ -114,6 +142,9 @@
 <body>
   <div class="quiz-container">
     <h2>Levels of Biological Organization – Quiz</h2>
+    <div class="progress-text" id="progressText">Question 1 of 10</div>
+    <div class="progress-wrapper"><div class="progress-bar" id="progressBar"></div></div>
+
     <div id="quizBox"></div>
     <button id="nextBtn" class="next-btn" style="display:none;">Next</button>
   </div>
@@ -135,9 +166,12 @@
   let current = 0, score = 0, selected = null;
   const quizBox = document.getElementById("quizBox");
   const nextBtn = document.getElementById("nextBtn");
+  const progressText = document.getElementById("progressText");
+  const progressBar = document.getElementById("progressBar");
 
   function showQuestion() {
     const q = quizData[current];
+    updateProgress();
     quizBox.innerHTML = `<div class='question'>${q.q}</div><div class='choices'></div>`;
     const choicesContainer = quizBox.querySelector(".choices");
     q.c.forEach((choice, i) => {
@@ -165,7 +199,15 @@
     if (current < quizData.length) showQuestion(); else showResult();
   });
 
+  function updateProgress() {
+    const percent = ((current) / quizData.length) * 100;
+    progressBar.style.width = percent + "%";
+    progressText.textContent = `Question ${current + 1} of ${quizData.length}`;
+  }
+
   function showResult() {
+    progressBar.style.width = "100%";
+    progressText.textContent = "Quiz Completed";
     const percent = Math.round((score / quizData.length) * 100);
     const passed = percent >= 80;
     quizBox.innerHTML = `
