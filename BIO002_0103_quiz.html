@@ -179,95 +179,82 @@
         a: 1 }
     ];
 
-    let current = 0, score = 0, selected = null;
-    const quizBox = document.getElementById("quizBox");
-    const nextBtn = document.getElementById("nextBtn");
-    const progress = document.getElementById("progress");
+  let current = 0, score = 0, selected = null;
+  const quizBox = document.getElementById("quizBox");
+  const nextBtn = document.getElementById("nextBtn");
+  const progressText = document.getElementById("progressText");
+  const progressBar = document.getElementById("progressBar");
 
-    function showQuestion() {
-      const q = quizData[current];
-      quizBox.innerHTML = `<div class='question'>${q.q}</div><div class='choices'></div>`;
-      const choicesContainer = quizBox.querySelector(".choices");
-      q.c.forEach((choice, i) => {
-        const btn = document.createElement("button");
-        btn.className = "choice";
-        btn.innerHTML = choice;
-        btn.addEventListener("click", () => selectChoice(i));
-        choicesContainer.appendChild(btn);
-      });
-      nextBtn.style.display = "none";
-      selected = null;
-      updateProgress();
-    }
-
-    function selectChoice(i) {
-      selected = i;
-      document.querySelectorAll(".choice").forEach((btn, idx) =>
-        btn.classList.toggle("selected", idx === i)
-      );
-      nextBtn.style.display = "inline-block";
-    }
-
-    function updateProgress() {
-      const percent = ((current) / quizData.length) * 100;
-      progress.style.width = percent + "%";
-    }
-
-    nextBtn.addEventListener("click", () => {
-      if (selected === quizData[current].a) score++;
-      current++;
-      if (current < quizData.length) showQuestion(); 
-      else showResult();
+  function showQuestion() {
+    const q = quizData[current];
+    updateProgress();
+    quizBox.innerHTML = `<div class='question'>${q.q}</div><div class='choices'></div>`;
+    const choicesContainer = quizBox.querySelector(".choices");
+    q.c.forEach((choice, i) => {
+      const btn = document.createElement("button");
+      btn.className = "choice";
+      btn.innerHTML = choice;
+      btn.addEventListener("click", () => selectChoice(i));
+      choicesContainer.appendChild(btn);
     });
+    nextBtn.style.display = "none";
+    selected = null;
+  }
 
-    function showResult() {
-      const percent = Math.round((score / quizData.length) * 100);
-      const stars = document.createElement("div");
-      stars.className = "stars";
+  function selectChoice(i) {
+    selected = i;
+    document.querySelectorAll(".choice").forEach((btn, idx) =>
+      btn.classList.toggle("selected", idx === i)
+    );
+    nextBtn.style.display = "inline-block";
+  }
 
-      let starHTML = "";
-      if (percent === 100) starHTML = "🌟🌟🌟";
-      else if (percent >= 90) starHTML = "🌟🌟⚫";
-      else if (percent >= 80) starHTML = "🌟⚫⚫";
-      else starHTML = "⚫⚫⚫";
+  nextBtn.addEventListener("click", () => {
+    if (selected === quizData[current].a) score++;
+    current++;
+    if (current < quizData.length) showQuestion(); else showResult();
+  });
 
-      stars.innerHTML = starHTML;
-      const passed = percent >= 80;
+  function updateProgress() {
+    const percent = (current / quizData.length) * 100;
+    progressBar.style.width = percent + "%";
+    progressText.textContent = `Question ${current + 1} of ${quizData.length}`;
+  }
 
-      quizBox.innerHTML = `
-        <div class='result'>You scored ${score} out of ${quizData.length} (${percent}%)</div>
-      `;
-      quizBox.appendChild(stars);
+  function getStarRating(percent) {
+    if (percent === 100) return "⭐️⭐️⭐️";
+    else if (percent >= 90) return "⭐️⭐️☆";
+    else if (percent >= 80) return "⭐️☆☆";
+    else return "☆☆☆";
+  }
 
-      const nav = document.createElement("div");
-      nav.className = "quiz-nav";
-      nav.innerHTML = `
+  function showResult() {
+    progressBar.style.width = "100%";
+    progressText.textContent = "Quiz Completed";
+    const percent = Math.round((score / quizData.length) * 100);
+    const passed = percent >= 80;
+
+    quizBox.innerHTML = `
+      <div class='stars'>${getStarRating(percent)}</div>
+      <div class='result'>You scored ${score}/${quizData.length} (${percent}%)</div>
+      <div class='quiz-nav'>
         <button class='quiz-btn' id='backBtn'>⬅ Back</button>
         <button class='quiz-btn' id='retryBtn'>🔁 Retry</button>
         <button class='quiz-btn primary' id='nextLessonBtn' ${passed ? "" : "disabled"}>➡ Next Lesson</button>
-      `;
-      quizBox.appendChild(nav);
-      nextBtn.style.display = "none";
-      progress.style.width = "100%";
+      </div>
+    `;
 
-      window.parent.postMessage({ type: "quizResult", score: percent, passed }, "*");
+    nextBtn.style.display = "none";
+    window.parent.postMessage({ type: "quizResult", score: percent, passed }, "*");
 
-      document.getElementById("retryBtn").addEventListener("click", retryQuiz);
-      document.getElementById("backBtn").addEventListener("click", () => {
-        window.parent.postMessage({ type: "quizBack" }, "*");
-      });
-      document.getElementById("nextLessonBtn").addEventListener("click", () => {
-        if (passed) window.parent.postMessage({ type: "quizNextLesson" }, "*");
-      });
-    }
+    document.getElementById("retryBtn").addEventListener("click", retryQuiz);
+    document.getElementById("backBtn").addEventListener("click", () => window.parent.postMessage({ type: "quizBack" }, "*"));
+    document.getElementById("nextLessonBtn").addEventListener("click", () => { if (passed) window.parent.postMessage({ type: "quizNextLesson" }, "*"); });
+  }
 
-    function retryQuiz() {
-      current = 0;
-      score = 0;
-      showQuestion();
-    }
+  function retryQuiz() { current = 0; score = 0; showQuestion(); }
 
-    showQuestion();
+  showQuestion();
   </script>
 </body>
 </html>
