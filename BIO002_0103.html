@@ -105,125 +105,173 @@
 
     .note { font-size: 1.4rem; color: #555; margin-top: 6px; }
 
+    table.compare {
+      width: 100%;
+      max-width: 800px;
+      border-collapse: collapse;
+      margin: 20px auto;
+      background: #fff;
+      border-radius: 10px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.04);
+      font-size: 18px;
+    }
+
+    table.compare th, table.compare td {
+      padding: 10px 12px;
+      border-bottom: 1px solid #eee;
+      text-align: left;
+    }
+
+    table.compare th {
+      background: #f3f7ff;
+      color: #174ea6;
+    }
+
     * { box-sizing: border-box; scroll-behavior: smooth; }
+    .gif {
+      text-align: center;
+      margin: 16px 0;
+  }
+
+  .gif img {
+    width: 100%;
+    max-width: 480px; /* adjust as you like */
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  }
+
   </style>
 </head>
 
 <body>
   <h1>Nutrition and Gas Exchange</h1>
   <p class="note">
-    Every living organism needs energy to survive. This energy comes from nutrients and oxygen —  
-    substances that enter the body through nutrition and gas exchange.
+    All living organisms need energy to survive. This energy is obtained from nutrients and oxygen — 
+    both essential for growth, repair, and maintaining life processes.
   </p>
 
   <!-- 1. Introduction -->
   <div class="section">
-    <h2>1. Why Organisms Need Nutrition and Gas Exchange</h2>
+    <h2>1. The Importance of Nutrition and Gas Exchange</h2>
     <p>
-      Nutrition provides materials for growth and repair, while gas exchange supplies oxygen for respiration  
-      and removes waste gases like carbon dioxide. These two processes are closely linked to how organisms 
-      obtain and use energy for survival.
+      Nutrition provides materials for building body structures and generating energy.  
+      Gas exchange supplies oxygen for <strong>cellular respiration</strong> and removes carbon dioxide, a waste product.  
+      These processes work together to sustain life.
     </p>
     <div class="gif">
-      <img src="https://cdn.dribbble.com/users/204955/screenshots/3227095/oxygen2.gif" alt="Oxygen entering body">
-      <p class="note"><em>Oxygen enters organisms and is used to release energy from food.</em></p>
+      <img src="https://cdn.dribbble.com/users/204955/screenshots/3227095/oxygen2.gif" alt="Oxygen entering the body">
+      <p class="note"><em>Oxygen enters organisms to release energy from food molecules.</em></p>
     </div>
   </div>
 
-  <!-- 2. Modes of Nutrition -->
+  <!-- 2. Types of Nutrition -->
   <div class="section">
-    <h2>2. Modes of Nutrition</h2>
+    <h2>2. Types of Nutrition</h2>
     <p>
-      Organisms have evolved different ways to obtain food and nutrients:
+      Organisms differ in how they obtain food and nutrients:
     </p>
     <ul>
-      <li><strong>Autotrophic nutrition:</strong> Organisms like plants make their own food through <em>photosynthesis</em>.</li>
-      <li><strong>Heterotrophic nutrition:</strong> Animals and fungi depend on other organisms for food.</li>
+      <li><strong>Autotrophic nutrition:</strong> Organisms like plants make their own food through photosynthesis using sunlight, carbon dioxide, and water.</li>
+      <li><strong>Heterotrophic nutrition:</strong> Organisms like animals and fungi rely on other organisms for food.</li>
+    </ul>
+  </div>
+
+  <!-- 3. Types of Heterotrophic Nutrition -->
+  <div class="section">
+    <h2>3. Types of Heterotrophic Nutrition</h2>
+    <p>
+      Heterotrophs use different methods to obtain nutrients from other sources:
+    </p>
+    <ul>
+      <li><strong>Holozoic nutrition:</strong> Organisms ingest solid food, digest it internally, and absorb nutrients.  
+          <em>Example:</em> Humans and most animals.</li>
+      <li><strong>Saprophytic nutrition:</strong> Organisms feed on dead or decaying matter by secreting digestive enzymes and absorbing the nutrients.  
+          <em>Example:</em> Fungi and some bacteria.</li>
+      <li><strong>Parasitic nutrition:</strong> Organisms live on or inside a host and obtain nutrients at the host’s expense.  
+          <em>Example:</em> Tapeworms, lice, mistletoe plants.</li>
     </ul>
 
     <div class="activity">
-      <h3>Activity 1: Classify the Example</h3>
-      <p>Is a mushroom autotrophic or heterotrophic?</p>
-      <div class="gif"><img src="https://i.pinimg.com/originals/49/54/8f/49548f5cf6071f5efee05b25d29293b3.gif" alt="Mushroom growth"></div>
+      <h3>Activity 1: Identify the Nutrition Type</h3>
+      <p>Which type of heterotrophic nutrition does a mushroom exhibit?</p>
+      <div class="gif">
+        <img src="https://i.pinimg.com/originals/49/54/8f/49548f5cf6071f5efee05b25d29293b3.gif" alt="Mushroom growth gif">
+      </div>
       <button class="toggle-btn" onclick="toggleAnswer(this)">Show Answer</button>
-      <div class="answer"><strong>Answer:</strong> Heterotrophic — it absorbs nutrients from decaying organic matter.</div>
+      <div class="answer">
+        <strong>Answer:</strong> Saprophytic — it feeds on decaying matter by absorbing dissolved nutrients.
+      </div>
     </div>
   </div>
 
-  <!-- 3. Gas Exchange in Plants and Animals -->
+  <!-- 4. Gas Exchange in Plants and Animals -->
   <div class="section">
-    <h2>3. Gas Exchange in Plants and Animals</h2>
+    <h2>4. Gas Exchange in Plants and Animals</h2>
     <p>
-      Gas exchange allows organisms to take in oxygen and release carbon dioxide.  
-      This process supports <strong>cellular respiration</strong> — the reaction that converts food energy into ATP.
+      Gas exchange enables organisms to take in oxygen and release carbon dioxide for cellular respiration.  
+      In plants, gases enter and exit through tiny pores called <strong>stomata</strong>.  
+      In animals, exchange occurs in specialized structures like <strong>lungs, gills,</strong> or <strong>skin.</strong>
     </p>
-
     <div class="image">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/3/3a/Respiration-photosynthesis.png" 
-           alt="Gas exchange diagram in plants and animals">
-      <p class="note"><em>Plants use CO₂ for photosynthesis and release O₂; animals do the opposite during respiration.</em></p>
+      <img src="https://upload.wikimedia.org/wikipedia/commons/3/3a/Respiration-photosynthesis.png" alt="Gas exchange diagram">
+      <p class="note"><em>Photosynthesis and respiration complement each other — maintaining atmospheric balance.</em></p>
     </div>
 
     <div class="activity">
-      <h3>Activity 2: Understanding Opposite Processes</h3>
-      <p>How do the processes of photosynthesis and respiration complement each other?</p>
+      <h3>Activity 2: Analyze the Balance</h3>
+      <p>Explain how the gas exchange in plants and animals are opposite yet interdependent.</p>
       <button class="toggle-btn" onclick="toggleAnswer(this)">Show Answer</button>
       <div class="answer">
         <p>
-          Photosynthesis uses carbon dioxide and releases oxygen, while respiration uses oxygen and releases carbon dioxide.  
-          This balance maintains Earth's atmosphere and energy flow between organisms.
+          Plants use carbon dioxide and release oxygen during photosynthesis, while animals use oxygen and release carbon dioxide during respiration.  
+          Each provides the gases the other needs — maintaining a balanced ecosystem.
         </p>
       </div>
     </div>
   </div>
 
-  <!-- 4. Human Gas Exchange System -->
+  <!-- 5. Human Gas Exchange System -->
   <div class="section">
-    <h2>4. Gas Exchange in Humans</h2>
+    <h2>5. Gas Exchange in Humans</h2>
     <p>
-      In humans, gas exchange occurs in the <strong>lungs</strong>, specifically in tiny air sacs called <strong>alveoli</strong>.  
-      Oxygen diffuses into the blood while carbon dioxide moves out to be exhaled.
+      Humans exchange gases in the lungs, specifically in tiny air sacs called <strong>alveoli</strong>.  
+      Oxygen diffuses into the bloodstream, while carbon dioxide diffuses out to be exhaled.
     </p>
-
-    <div class="image">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/8/83/Alveolus_diagram.svg" 
-           alt="Alveoli structure diagram">
-      <p class="note"><em>Gas exchange happens through diffusion across thin alveolar walls.</em></p>
-    </div>
-
-    <div class="activity">
-      <h3>Activity 3: Apply Your Knowledge</h3>
-      <p>Why does the alveoli structure make gas exchange more efficient?</p>
-      <button class="toggle-btn" onclick="toggleAnswer(this)">Show Answer</button>
-      <div class="answer">
-        <ul>
-          <li>Large surface area for gas diffusion.</li>
-          <li>Thin walls for rapid diffusion.</li>
-          <li>Surrounded by capillaries for quick gas transport.</li>
-        </ul>
-      </div>
+    <div class="gif">
+      <img src="https://aatishb.com/noticing/wp-content/uploads/2015/10/how-we-breathe.gif" alt="Human alveoli structure">
+      <p class="note"><em>Alveoli have thin walls and large surface areas, allowing efficient diffusion of gases.</em></p>
     </div>
   </div>
 
-  <!-- 5. Simulation -->
+  <!-- 6. Simulation -->
   <div class="section">
-    <h2>5. Interactive Simulation: Breathing and Gas Exchange</h2>
+    <h2>6. Interactive Simulation: Breathing and Gas Exchange</h2>
     <p>Explore how oxygen and carbon dioxide are exchanged during breathing.</p>
     <div class="simulation">
-      <iframe src="https://phet.colorado.edu/sims/html/human-respiration/latest/human-respiration_en.html" 
+      <iframe src="https://phet.colorado.edu/sims/html/human-respiration/latest/human-respiration_en.html"
               title="Gas Exchange Simulation" allowfullscreen></iframe>
     </div>
   </div>
 
-  <!-- 6. Summary -->
+  <!-- 7. Summary -->
   <div class="section">
-    <h2>6. Lesson Summary</h2>
+    <h2>7. Lesson Summary</h2>
     <ul>
-      <li>Nutrition provides materials and energy; gas exchange supplies oxygen and removes waste gases.</li>
-      <li>Autotrophs make their own food, while heterotrophs depend on others for nutrients.</li>
-      <li>Photosynthesis and respiration form a balanced gas exchange cycle between plants and animals.</li>
-      <li>In humans, alveoli in the lungs enable efficient gas exchange by diffusion.</li>
+      <li>Nutrition and gas exchange are essential for supplying energy and removing waste gases.</li>
+      <li>Autotrophs produce their own food, while heterotrophs depend on others.</li>
+      <li>Heterotrophic nutrition includes holozoic (ingestion), saprophytic (decomposition), and parasitic (host-dependent) modes.</li>
+      <li>Plants and animals exchange gases differently, but their processes are interlinked through photosynthesis and respiration.</li>
     </ul>
+
+    <h3 style="text-align:center;">Comparison of Gas Exchange in Plants and Animals</h3>
+    <table class="compare">
+      <tr><th>Aspect</th><th>Plants</th><th>Animals</th></tr>
+      <tr><td>Structure Involved</td><td>Stomata (leaves), lenticels (stems), roots</td><td>Lungs, gills, or skin</td></tr>
+      <tr><td>Main Gases Involved</td><td>Take in CO₂, release O₂</td><td>Take in O₂, release CO₂</td></tr>
+      <tr><td>Purpose</td><td>Photosynthesis and respiration</td><td>Respiration only (energy release)</td></tr>
+      <tr><td>Direction of Flow</td><td>Bidirectional (depends on time of day)</td><td>Unidirectional (oxygen in, CO₂ out)</td></tr>
+      <tr><td>Energy Use</td><td>Passive diffusion through stomata</td><td>Active ventilation in many species</td></tr>
+    </table>
   </div>
 
   <div style="text-align:center; margin-top:18px;">
