@@ -1,282 +1,298 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Chapter 1 – Lesson 4 Quiz: Irritability and Adaptability in Organisms</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Chapter 1 – Lesson 4: Irritability and Adaptability in Organisms</title>
   <style>
     body {
       font-family: "Segoe UI", Arial, sans-serif;
       background: linear-gradient(135deg, #e8f9f1, #f7faff);
+      color: #222;
       margin: 0;
-      padding: 0;
-      color: #333;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      padding: 24px;
+      line-height: 1.7;
       font-size: 22px;
-      min-height: 100vh;
     }
-    .quiz-container {
-      width: 90%;
-      max-width: 850px;
-      background: #fff;
-      border-radius: 20px;
-      padding: 40px;
-      box-shadow: 0 6px 30px rgba(0,0,0,0.1);
+
+    h1 { color: #136f63; font-size: 2.1em; margin-bottom: 0.25em; }
+    h2 { color: #136f63; font-size: 1.45em; margin-top: 1.1em; margin-bottom: 0.25em; }
+    h3 { color: #174ea6; font-size: 1.05em; margin: 0.6em 0; }
+    p { margin: 10px 0; }
+    ul { margin-left: 24px; }
+    .section { margin-bottom: 28px; }
+
+    .image, .simulation {
       text-align: center;
+      margin: 20px 0;
     }
-    h2 {
-      color: #136f63;
-      margin-bottom: 20px;
-    }
-    .question {
-      font-size: 24px;
-      margin-bottom: 18px;
-      font-weight: 600;
-      color: #174ea6;
-    }
-    .choices {
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-      align-items: center;
-      margin-bottom: 20px;
-    }
-    .choice {
-      width: 100%;
-      max-width: 520px;
-      background: #e8ecf8;
-      border: none;
+
+    img {
       border-radius: 10px;
-      padding: 14px 18px;
-      cursor: pointer;
-      text-align: left;
-      font-size: 20px;
-      transition: all 0.2s ease;
+      width: 85%;
+      max-width: 640px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
     }
-    .choice:hover {
-      background: #d3dbf8;
-      transform: translateY(-2px);
+
+    iframe {
+      width: 90%;
+      max-width: 860px;
+      height: 420px;
+      border-radius: 12px;
+      border: none;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.08);
     }
-    .choice.selected {
-      background: #174ea6;
-      color: #fff;
-      transform: scale(1.02);
+
+    .activity {
+      background: #ffffff;
+      border-radius: 12px;
+      padding: 16px 20px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.05);
+      margin: 18px 0;
     }
-    .next-btn {
+
+    .toggle-btn {
       background: #136f63;
       color: #fff;
       border: none;
-      padding: 12px 24px;
+      padding: 9px 16px;
       border-radius: 8px;
-      font-size: 20px;
       cursor: pointer;
-      margin-top: 10px;
-      transition: 0.2s;
+      font-weight: 600;
+      font-size: 16px;
+      transition: 0.18s;
+      margin-top: 8px;
     }
-    .next-btn:hover {
+
+    .toggle-btn:hover {
       background: #0f5b52;
+      transform: translateY(-1px);
     }
-    .progress-bar {
-      width: 100%;
+
+    .answer {
+      display: none;
+      margin-top: 12px;
       background: #eef3ff;
-      border-radius: 10px;
-      height: 12px;
-      margin: 20px 0;
-      overflow: hidden;
-    }
-    .progress {
-      height: 100%;
-      width: 0%;
-      background: linear-gradient(90deg, #136f63, #2b7de9);
-      transition: width 0.3s ease;
-    }
-    .stars {
-      margin: 20px 0;
-      font-size: 38px;
-    }
-    .star {
-      color: gold;
-      margin: 0 3px;
-    }
-    .star.grey {
-      color: #ccc;
-    }
-    .result {
-      font-size: 26px;
-      font-weight: bold;
-      color: #174ea6;
-      margin-top: 20px;
-    }
-    .quiz-nav {
-      margin-top: 24px;
-    }
-    .quiz-btn {
-      background: #e8ecf8;
-      color: #174ea6;
-      border: none;
+      padding: 14px;
       border-radius: 8px;
-      padding: 10px 20px;
       font-size: 17px;
-      margin: 5px;
+    }
+
+    .quiz-button {
+      display: inline-block;
+      background-color: #136f63;
+      color: white;
+      padding: 13px 26px;
+      border-radius: 10px;
+      border: none;
+      font-weight: bold;
+      font-size: 17px;
       cursor: pointer;
-      transition: all 0.2s ease;
+      transition: 0.2s;
+      margin-top: 22px;
     }
-    .quiz-btn:hover {
-      background: #d3dbf8;
-      transform: translateY(-2px);
+
+    .quiz-button:hover {
+      background-color: #0f5b52;
     }
-    .quiz-btn.primary {
-      background: #136f63;
-      color: #fff;
+
+    table.compare {
+      width: 100%;
+      max-width: 800px;
+      border-collapse: collapse;
+      margin: 20px auto;
+      background: #fff;
+      border-radius: 10px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.04);
+      font-size: 18px;
     }
-    .quiz-btn.primary:hover {
-      background: #0f5b52;
+
+    table.compare th, table.compare td {
+      padding: 10px 12px;
+      border-bottom: 1px solid #eee;
+      text-align: left;
     }
-    .progress-text {
+
+    table.compare th {
+      background: #f3f7ff;
       color: #174ea6;
-      font-weight: 600;
-      margin-bottom: 5px;
     }
+
+    .note { font-size: 1.4rem; color: #555; margin-top: 6px; }
+    * { box-sizing: border-box; scroll-behavior: smooth; }
   </style>
 </head>
 
 <body>
-  <div class="quiz-container">
-    <h2>Lesson 4 Quiz – Irritability and Adaptability in Organisms</h2>
-    <div class="progress-text" id="progressText">Question 1 of 10</div>
-    <div class="progress-bar"><div class="progress" id="progressBar"></div></div>
-    <div id="quizBox"></div>
-    <button id="nextBtn" class="next-btn" style="display:none;">Next</button>
+  <h1>Irritability and Adaptability in Organisms</h1>
+  <p class="note">
+    Living things can detect and respond to changes in their surroundings — this is called <strong>irritability</strong>.  
+    Over time, organisms also develop <strong>adaptations</strong> that help them survive and thrive in different environments.
+  </p>
+
+  <!-- 1. Introduction -->
+  <div class="section">
+    <h2>1. Irritability — The Power to Respond</h2>
+    <p>
+      Irritability is the ability of living organisms to detect changes (stimuli) and respond appropriately.  
+      These responses help organisms survive, avoid harm, and maintain stability.
+    </p>
+    <div class="image">
+      <img src="https://media.geeksforgeeks.org/wp-content/uploads/20240226113220/Stimulus-and-Response-in-Animals.png" 
+           alt="Stimulus and response in living organisms" />
+      <p class="note"><em>Example: a cat reacts to sound, or a plant bends toward light.</em></p>
+    </div>
+  </div>
+
+  <!-- 2. Plant Irritability -->
+  <div class="section">
+    <h2>2. Irritability in Plants — Tropisms</h2>
+    <p>
+      Plants respond slowly to environmental stimuli by changing their direction of growth.  
+      These movements are known as <strong>tropisms</strong> and are usually controlled by plant hormones such as auxins.
+    </p>
+    <ul>
+      <li><strong>Phototropism:</strong> Growth toward light (e.g., stems bending toward sunlight).</li>
+      <li><strong>Geotropism (Gravitropism):</strong> Growth in response to gravity (e.g., roots growing downward).</li>
+      <li><strong>Hydrotropism:</strong> Growth toward moisture (e.g., roots seeking water).</li>
+      <li><strong>Thigmotropism:</strong> Response to touch (e.g., vines wrapping around supports).</li>
+    </ul>
+    <div class="image">
+      <img src="https://cdn.britannica.com/74/152874-050-7E19D4C4/Examples-plant-tropisms.jpg" alt="Examples of plant tropisms" />
+      <p class="note"><em>Plant growth responses toward or away from stimuli are called tropisms.</em></p>
+    </div>
+
+    <div class="activity">
+      <h3>Activity 1: Identify the Type of Tropism</h3>
+      <p>
+        A bean plant bends toward sunlight through the window.  
+        What type of tropism does this show?
+      </p>
+      <button class="toggle-btn" onclick="toggleAnswer(this)">Show Answer</button>
+      <div class="answer">
+        <strong>Answer:</strong> Phototropism — the plant grows toward the light source.
+      </div>
+    </div>
+  </div>
+
+  <!-- 3. Animal Irritability -->
+  <div class="section">
+    <h2>3. Irritability in Animals — Taxis and Reflex Actions</h2>
+    <p>
+      Animals can move quickly in response to stimuli. This movement toward or away from a stimulus is called <strong>taxis</strong>.  
+      Reflexes are automatic and immediate responses to protect the organism from harm.
+    </p>
+    <ul>
+      <li><strong>Phototaxis:</strong> Movement in response to light (e.g., moths flying toward light).</li>
+      <li><strong>Geotaxis:</strong> Movement in response to gravity (e.g., insects avoiding downward surfaces).</li>
+      <li><strong>Chemotaxis:</strong> Movement toward or away from chemicals (e.g., sperm moving toward egg).</li>
+      <li><strong>Thigmotaxis:</strong> Response to touch or surface contact (e.g., cockroaches hiding in crevices).</li>
+    </ul>
+
+    <div class="image">
+      <img src="https://ib.bioninja.com.au/_Media/taxis-types_med.jpeg" alt="Animal taxis examples" />
+      <p class="note"><em>Animals move toward or away from stimuli — a key survival behavior.</em></p>
+    </div>
+
+    <div class="activity">
+      <h3>Activity 2: Compare Responses</h3>
+      <p>
+        A sunflower turns toward the sun, while a moth flies toward a lamp.  
+        Which one shows tropism and which shows taxis?
+      </p>
+      <button class="toggle-btn" onclick="toggleAnswer(this)">Show Answer</button>
+      <div class="answer">
+        <p>The sunflower shows <strong>tropism</strong> (growth movement), while the moth shows <strong>taxis</strong> (active movement).</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 4. Adaptation -->
+  <div class="section">
+    <h2>4. Adaptability — Surviving in a Changing World</h2>
+    <p>
+      <strong>Adaptation</strong> is the ability of organisms to adjust or develop traits that help them survive in specific environments.  
+      These can be structural, behavioral, or physiological.
+    </p>
+    <ul>
+      <li><strong>Structural Adaptation:</strong> Physical traits that aid survival.  
+          <em>Examples:</em> Thick fur in polar bears, spines in cacti, webbed feet in ducks.</li>
+      <li><strong>Behavioral Adaptation:</strong> Actions that improve survival.  
+          <em>Examples:</em> Bird migration, nocturnal hunting, hibernation.</li>
+      <li><strong>Physiological Adaptation:</strong> Internal body processes that aid survival.  
+          <em>Examples:</em> Camels producing concentrated urine, snakes producing venom.</li>
+    </ul>
+
+    <div class="image">
+      <img src="https://biologydictionary.net/wp-content/uploads/2020/03/adaptation.png" alt="Types of adaptation examples" />
+      <p class="note"><em>Adaptations may be physical, behavioral, or internal — each ensures survival and reproduction.</em></p>
+    </div>
+
+    <div class="activity">
+      <h3>Activity 3: Identify the Adaptation Type</h3>
+      <p>
+        Penguins huddle together during winter to keep warm.  
+        What type of adaptation is this?
+      </p>
+      <button class="toggle-btn" onclick="toggleAnswer(this)">Show Answer</button>
+      <div class="answer">
+        <strong>Answer:</strong> Behavioral adaptation — a cooperative action to reduce heat loss.
+      </div>
+    </div>
+  </div>
+
+  <!-- 5. Comparison Table -->
+  <div class="section">
+    <h2>5. Comparison Summary</h2>
+    <h3 style="text-align:center;">Comparison of Tropism and Taxis</h3>
+    <table class="compare">
+      <tr><th>Feature</th><th>Tropism (Plants)</th><th>Taxis (Animals)</th></tr>
+      <tr><td>Type of Movement</td><td>Growth movement (slow)</td><td>Locomotory movement (fast)</td></tr>
+      <tr><td>Stimulus Type</td><td>Light, gravity, touch, water</td><td>Light, chemicals, gravity, touch</td></tr>
+      <tr><td>Energy Requirement</td><td>Low (growth-based)</td><td>High (active movement)</td></tr>
+      <tr><td>Examples</td><td>Phototropism, Geotropism</td><td>Phototaxis, Chemotaxis</td></tr>
+    </table>
+  </div>
+
+  <!-- 6. Simulation -->
+  <div class="section">
+    <h2>6. Interactive Simulation: Plant Tropism</h2>
+    <p>Observe how plants respond to light direction over time.</p>
+    <div class="simulation">
+      <iframe src="https://javalab.org/en/phototropism_en" title="Phototropism Simulation" allowfullscreen></iframe>
+    </div>
+  </div>
+
+  <!-- 7. Lesson Summary -->
+  <div class="section">
+    <h2>7. Lesson Summary</h2>
+    <ul>
+      <li><strong>Irritability</strong> allows organisms to detect and respond to stimuli for survival.</li>
+      <li>Plants show <strong>tropisms</strong> (growth responses), while animals show <strong>taxis</strong> or reflexes (movement responses).</li>
+      <li><strong>Adaptations</strong> can be structural, behavioral, or physiological — all improve survival chances.</li>
+      <li>Responses are short-term adjustments; adaptations are long-term evolutionary changes.</li>
+    </ul>
+  </div>
+
+  <!-- Quiz Button -->
+  <div style="text-align:center; margin-top:18px;">
+    <button class="quiz-button" id="takeQuizBtn">Take the Lesson Quiz →</button>
   </div>
 
   <script>
-    const quizData = [
-      { q: "1. What does 'irritability' in living organisms refer to?", 
-        c: ["Ability to reproduce", "Ability to respond to stimuli", "Ability to move voluntarily", "Ability to grow and repair"],
-        a: 1 },
-      { q: "2. In plants, the movement toward or away from a stimulus is called:", 
-        c: ["Taxis", "Tropism", "Reflex", "Instinct"],
-        a: 1 },
-      { q: "3. In animals, the oriented movement toward or away from a stimulus is known as:", 
-        c: ["Taxis", "Tropism", "Transpiration", "Photolysis"],
-        a: 0 },
-      { q: "4. A moth flying toward a light source is an example of:", 
-        c: ["Negative phototaxis", "Positive phototaxis", "Positive geotropism", "Thigmotropism"],
-        a: 1 },
-      { q: "5. Roots growing downward in response to gravity demonstrate:", 
-        c: ["Negative geotropism", "Positive geotropism", "Phototropism", "Hydrotropism"],
-        a: 1 },
-      { q: "6. Which of the following correctly compares plant and animal irritability?", 
-        c: ["Both respond to stimuli but plants show tropisms while animals exhibit taxis or reflex actions", 
-            "Plants respond faster than animals", 
-            "Animals depend on sunlight like plants do", 
-            "Only animals are capable of responding to external stimuli"],
-        a: 0 },
-      { q: "7. Which adaptive feature helps desert plants reduce water loss?", 
-        c: ["Broad leaves", "Waxy cuticle and spines", "Thin stomata", "Long stems only"],
-        a: 1 },
-      { q: "8. Which of the following is an example of physiological adaptation?", 
-        c: ["Migration of birds", "Camouflage of chameleons", "Production of concentrated urine in camels", "Thick fur of polar bears"],
-        a: 2 },
-      { q: "9. An animal that moves away from light is exhibiting:", 
-        c: ["Positive phototaxis", "Negative phototaxis", "Thigmotropism", "Hydrotropism"],
-        a: 1 },
-      { q: "10. Which of the following statements about adaptability is TRUE?", 
-        c: ["Adaptations occur instantly when environment changes", 
-            "Adaptations develop over generations and increase survival chances", 
-            "Adaptations reduce an organism’s ability to survive", 
-            "Adaptations are unrelated to evolution"],
-        a: 1 }
-    ];
-
-    let current = 0, score = 0, selected = null;
-    const quizBox = document.getElementById("quizBox");
-    const nextBtn = document.getElementById("nextBtn");
-    const progressBar = document.getElementById("progressBar");
-    const progressText = document.getElementById("progressText");
-
-    function showQuestion() {
-      const q = quizData[current];
-      updateProgress();
-      quizBox.innerHTML = `<div class='question'>${q.q}</div><div class='choices'></div>`;
-      const choicesContainer = quizBox.querySelector(".choices");
-      q.c.forEach((choice, i) => {
-        const btn = document.createElement("button");
-        btn.className = "choice";
-        btn.innerHTML = choice;
-        btn.addEventListener("click", () => selectChoice(i));
-        choicesContainer.appendChild(btn);
-      });
-      nextBtn.style.display = "none";
-      selected = null;
+    function toggleAnswer(btn) {
+      const answer = btn.nextElementSibling;
+      const isVisible = answer.style.display === "block";
+      answer.style.display = isVisible ? "none" : "block";
+      btn.textContent = isVisible ? "Show Answer" : "Hide Answer";
     }
 
-    function selectChoice(i) {
-      selected = i;
-      document.querySelectorAll(".choice").forEach((btn, idx) =>
-        btn.classList.toggle("selected", idx === i)
-      );
-      nextBtn.style.display = "inline-block";
-    }
-
-    nextBtn.addEventListener("click", () => {
-      if (selected === quizData[current].a) score++;
-      current++;
-      if (current < quizData.length) showQuestion(); 
-      else showResult();
+    document.getElementById('takeQuizBtn').addEventListener('click', () => {
+      window.parent.postMessage({
+        type: 'openQuiz',
+        quiz: 'chapter1_lesson4_quiz.html'
+      }, '*');
     });
-
-    function updateProgress() {
-      const percent = (current / quizData.length) * 100;
-      progressBar.style.width = percent + "%";
-      progressText.textContent = `Question ${current + 1} of ${quizData.length}`;
-    }
-
-    function getStarRating(percent) {
-      if (percent === 100) return "⭐️⭐️⭐️";
-      else if (percent >= 90) return "⭐️⭐️☆";
-      else if (percent >= 80) return "⭐️☆☆";
-      else return "☆☆☆";
-    }
-
-    function showResult() {
-      progressBar.style.width = "100%";
-      progressText.textContent = "Quiz Completed";
-      const percent = Math.round((score / quizData.length) * 100);
-      const passed = percent >= 80;
-
-      quizBox.innerHTML = `
-        <div class='stars'>${getStarRating(percent)}</div>
-        <div class='result'>You scored ${score}/${quizData.length} (${percent}%)</div>
-        <div class='quiz-nav'>
-          <button class='quiz-btn' id='backBtn'>⬅ Back</button>
-          <button class='quiz-btn' id='retryBtn'>🔁 Retry</button>
-          <button class='quiz-btn primary' id='nextLessonBtn' ${passed ? "" : "disabled"}>➡ Next Lesson</button>
-        </div>
-      `;
-
-      nextBtn.style.display = "none";
-      window.parent.postMessage({ type: "quizResult", score: percent, passed }, "*");
-
-      document.getElementById("retryBtn").addEventListener("click", retryQuiz);
-      document.getElementById("backBtn").addEventListener("click", () =>
-        window.parent.postMessage({ type: "quizBack" }, "*")
-      );
-      document.getElementById("nextLessonBtn").addEventListener("click", () => {
-        if (passed) window.parent.postMessage({ type: "quizNextLesson" }, "*");
-      });
-    }
-
-    function retryQuiz() {
-      current = 0;
-      score = 0;
-      showQuestion();
-    }
-
-    showQuestion();
   </script>
 </body>
 </html>
-
