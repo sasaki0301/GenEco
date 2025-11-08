@@ -1,1 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Chapter 1 – Lesson 4 Quiz: Irritability and Adaptability in Organisms</title>
+  <style>
+    body {
+      font-family: "Segoe UI", Arial, sans-serif;
+      background: linear-gradient(135deg, #e8f9f1, #f7faff);
+      margin: 0;
+      padding: 0;
+      color: #333;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+      min-height: 100vh;
+    }
+    .quiz-container {
+      width: 90%;
+      max-width: 850px;
+      background: #fff;
+      border-radius: 20px;
+      padding: 40px;
+      box-shadow: 0 6px 30px rgba(0,0,0,0.1);
+      text-align: center;
+    }
+    h2 {
+      color: #136f63;
+      margin-bottom: 20px;
+    }
+    .question {
+      font-size: 24px;
+      margin-bottom: 18px;
+      font-weight: 600;
+      color: #174ea6;
+    }
+    .choices {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+    .choice {
+      width: 100%;
+      max-width: 520px;
+      background: #e8ecf8;
+      border: none;
+      border-radius: 10px;
+      padding: 14px 18px;
+      cursor: pointer;
+      text-align: left;
+      font-size: 20px;
+      transition: all 0.2s ease;
+    }
+    .choice:hover {
+      background: #d3dbf8;
+      transform: translateY(-2px);
+    }
+    .choice.selected {
+      background: #174ea6;
+      color: #fff;
+      transform: scale(1.02);
+    }
+    .next-btn {
+      background: #136f63;
+      color: #fff;
+      border: none;
+      padding: 12px 24px;
+      border-radius: 8px;
+      font-size: 20px;
+      cursor: pointer;
+      margin-top: 10px;
+      transition: 0.2s;
+    }
+    .next-btn:hover {
+      background: #0f5b52;
+    }
+    .progress-bar {
+      width: 100%;
+      background: #eef3ff;
+      border-radius: 10px;
+      height: 12px;
+      margin: 20px 0;
+      overflow: hidden;
+    }
+    .progress {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, #136f63, #2b7de9);
+      transition: width 0.3s ease;
+    }
+    .stars {
+      margin: 20px 0;
+      font-size: 38px;
+    }
+    .star {
+      color: gold;
+      margin: 0 3px;
+    }
+    .star.grey {
+      color: #ccc;
+    }
+    .result {
+      font-size: 26px;
+      font-weight: bold;
+      color: #174ea6;
+      margin-top: 20px;
+    }
+    .quiz-nav {
+      margin-top: 24px;
+    }
+    .quiz-btn {
+      background: #e8ecf8;
+      color: #174ea6;
+      border: none;
+      border-radius: 8px;
+      padding: 10px 20px;
+      font-size: 17px;
+      margin: 5px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .quiz-btn:hover {
+      background: #d3dbf8;
+      transform: translateY(-2px);
+    }
+    .quiz-btn.primary {
+      background: #136f63;
+      color: #fff;
+    }
+    .quiz-btn.primary:hover {
+      background: #0f5b52;
+    }
+    .progress-text {
+      color: #174ea6;
+      font-weight: 600;
+      margin-bottom: 5px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="quiz-container">
+    <h2>Lesson 4 Quiz – Irritability and Adaptability in Organisms</h2>
+    <div class="progress-text" id="progressText">Question 1 of 10</div>
+    <div class="progress-bar"><div class="progress" id="progressBar"></div></div>
+    <div id="quizBox"></div>
+    <button id="nextBtn" class="next-btn" style="display:none;">Next</button>
+  </div>
+
+  <script>
+    const quizData = [
+      { q: "1. What does 'irritability' in living organisms refer to?", 
+        c: ["Ability to reproduce", "Ability to respond to stimuli", "Ability to move voluntarily", "Ability to grow and repair"],
+        a: 1 },
+      { q: "2. In plants, the movement toward or away from a stimulus is called:", 
+        c: ["Taxis", "Tropism", "Reflex", "Instinct"],
+        a: 1 },
+      { q: "3. In animals, the oriented movement toward or away from a stimulus is known as:", 
+        c: ["Taxis", "Tropism", "Transpiration", "Photolysis"],
+        a: 0 },
+      { q: "4. A moth flying toward a light source is an example of:", 
+        c: ["Negative phototaxis", "Positive phototaxis", "Positive geotropism", "Thigmotropism"],
+        a: 1 },
+      { q: "5. Roots growing downward in response to gravity demonstrate:", 
+        c: ["Negative geotropism", "Positive geotropism", "Phototropism", "Hydrotropism"],
+        a: 1 },
+      { q: "6. Which of the following correctly compares plant and animal irritability?", 
+        c: ["Both respond to stimuli but plants show tropisms while animals exhibit taxis or reflex actions", 
+            "Plants respond faster than animals", 
+            "Animals depend on sunlight like plants do", 
+            "Only animals are capable of responding to external stimuli"],
+        a: 0 },
+      { q: "7. Which adaptive feature helps desert plants reduce water loss?", 
+        c: ["Broad leaves", "Waxy cuticle and spines", "Thin stomata", "Long stems only"],
+        a: 1 },
+      { q: "8. Which of the following is an example of physiological adaptation?", 
+        c: ["Migration of birds", "Camouflage of chameleons", "Production of concentrated urine in camels", "Thick fur of polar bears"],
+        a: 2 },
+      { q: "9. An animal that moves away from light is exhibiting:", 
+        c: ["Positive phototaxis", "Negative phototaxis", "Thigmotropism", "Hydrotropism"],
+        a: 1 },
+      { q: "10. Which of the following statements about adaptability is TRUE?", 
+        c: ["Adaptations occur instantly when environment changes", 
+            "Adaptations develop over generations and increase survival chances", 
+            "Adaptations reduce an organism’s ability to survive", 
+            "Adaptations are unrelated to evolution"],
+        a: 1 }
+    ];
+
+    let current = 0, score = 0, selected = null;
+    const quizBox = document.getElementById("quizBox");
+    const nextBtn = document.getElementById("nextBtn");
+    const progressBar = document.getElementById("progressBar");
+    const progressText = document.getElementById("progressText");
+
+    function showQuestion() {
+      const q = quizData[current];
+      updateProgress();
+      quizBox.innerHTML = `<div class='question'>${q.q}</div><div class='choices'></div>`;
+      const choicesContainer = quizBox.querySelector(".choices");
+      q.c.forEach((choice, i) => {
+        const btn = document.createElement("button");
+        btn.className = "choice";
+        btn.innerHTML = choice;
+        btn.addEventListener("click", () => selectChoice(i));
+        choicesContainer.appendChild(btn);
+      });
+      nextBtn.style.display = "none";
+      selected = null;
+    }
+
+    function selectChoice(i) {
+      selected = i;
+      document.querySelectorAll(".choice").forEach((btn, idx) =>
+        btn.classList.toggle("selected", idx === i)
+      );
+      nextBtn.style.display = "inline-block";
+    }
+
+    nextBtn.addEventListener("click", () => {
+      if (selected === quizData[current].a) score++;
+      current++;
+      if (current < quizData.length) showQuestion(); 
+      else showResult();
+    });
+
+    function updateProgress() {
+      const percent = (current / quizData.length) * 100;
+      progressBar.style.width = percent + "%";
+      progressText.textContent = `Question ${current + 1} of ${quizData.length}`;
+    }
+
+    function getStarRating(percent) {
+      if (percent === 100) return "⭐️⭐️⭐️";
+      else if (percent >= 90) return "⭐️⭐️☆";
+      else if (percent >= 80) return "⭐️☆☆";
+      else return "☆☆☆";
+    }
+
+    function showResult() {
+      progressBar.style.width = "100%";
+      progressText.textContent = "Quiz Completed";
+      const percent = Math.round((score / quizData.length) * 100);
+      const passed = percent >= 80;
+
+      quizBox.innerHTML = `
+        <div class='stars'>${getStarRating(percent)}</div>
+        <div class='result'>You scored ${score}/${quizData.length} (${percent}%)</div>
+        <div class='quiz-nav'>
+          <button class='quiz-btn' id='backBtn'>⬅ Back</button>
+          <button class='quiz-btn' id='retryBtn'>🔁 Retry</button>
+          <button class='quiz-btn primary' id='nextLessonBtn' ${passed ? "" : "disabled"}>➡ Next Lesson</button>
+        </div>
+      `;
+
+      nextBtn.style.display = "none";
+      window.parent.postMessage({ type: "quizResult", score: percent, passed }, "*");
+
+      document.getElementById("retryBtn").addEventListener("click", retryQuiz);
+      document.getElementById("backBtn").addEventListener("click", () =>
+        window.parent.postMessage({ type: "quizBack" }, "*")
+      );
+      document.getElementById("nextLessonBtn").addEventListener("click", () => {
+        if (passed) window.parent.postMessage({ type: "quizNextLesson" }, "*");
+      });
+    }
+
+    function retryQuiz() {
+      current = 0;
+      score = 0;
+      showQuestion();
+    }
+
+    showQuestion();
+  </script>
+</body>
+</html>
 
