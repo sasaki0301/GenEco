@@ -1,288 +1,302 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Chapter 2 – Lesson 1: Introduction to Genetics and Heredity</title>
-  <style>
-    body {
-      font-family: "Segoe UI", Arial, sans-serif;
-      background: linear-gradient(135deg, #f0fbf7, #f3f7ff);
-      color: #222;
-      margin: 0;
-      padding: 24px;
-      line-height: 1.7;
-      font-size: 20px;
-    }
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Chapter 2 – Lesson 1: Introduction to Genetics and Heredity</title>
+<style>
+  body {
+    font-family: "Segoe UI", Arial, sans-serif;
+    background: linear-gradient(135deg, #f0fbf7, #f3f7ff);
+    color: #222;
+    margin: 0;
+    padding: 32px 24px;
+    line-height: 1.7;
+    font-size: 18px;
+  }
 
-    h1 { color: #136f63; font-size: 2.1em; margin-bottom: 0.25em; }
-    h2 { color: #136f63; font-size: 1.45em; margin-top: 1.1em; margin-bottom: 0.25em; }
-    h3 { color: #174ea6; font-size: 1.05em; margin: 0.6em 0; }
-    p { margin: 10px 0; }
-    ul { margin-left: 24px; }
-    .section { margin-bottom: 22px; }
+  h1 {
+    color: #136f63;
+    font-size: 2em;
+    margin-bottom: 0.5em;
+  }
+  h2 {
+    color: #136f63;
+    font-size: 1.45em;
+    margin-top: 1.2em;
+    margin-bottom: 0.3em;
+  }
+  h3 {
+    color: #174ea6;
+    font-size: 1.05em;
+    margin-top: 0.7em;
+  }
+  p {
+    margin: 10px 0;
+  }
 
-    .image, .video, .simulation {
-      text-align: center;
-      margin: 20px 0;
-    }
+  ul { margin-left: 28px; }
 
-    img {
-      border-radius: 10px;
-      width: 85%;
-      max-width: 640px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-    }
+  .section {
+    margin-bottom: 28px;
+    background: #fff;
+    border-radius: 14px;
+    padding: 24px 28px;
+    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.05);
+  }
 
-    iframe {
-      width: 90%;
-      max-width: 860px;
-      height: 420px;
-      border-radius: 12px;
-      border: none;
-      box-shadow: 0 6px 18px rgba(0,0,0,0.08);
-    }
+  .image {
+    text-align: center;
+    margin: 18px 0;
+  }
 
-    .activity {
-      background: #ffffff;
-      border-radius: 12px;
-      padding: 16px 20px;
-      box-shadow: 0 2px 12px rgba(0,0,0,0.05);
-      margin: 18px 0;
-    }
+  img {
+    width: 90%;
+    max-width: 650px;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+  }
 
-    .toggle-btn {
-      background: #136f63;
-      color: #fff;
-      border: none;
-      padding: 9px 16px;
-      border-radius: 8px;
-      cursor: pointer;
-      font-weight: 600;
-      font-size: 16px;
-      transition: 0.18s;
-      margin-top: 8px;
-    }
+  .activity {
+    background: #f9fbff;
+    border-left: 5px solid #136f63;
+    border-radius: 8px;
+    padding: 14px 18px;
+    margin-top: 14px;
+  }
 
-    .toggle-btn:hover {
-      background: #0f5b52;
-      transform: translateY(-1px);
-    }
+  .toggle-btn {
+    background: #136f63;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 9px 16px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.2s;
+    margin-top: 10px;
+  }
 
-    .answer {
-      display: none;
-      margin-top: 12px;
-      background: #eef3ff;
-      padding: 14px;
-      border-radius: 8px;
-      font-size: 17px;
-    }
+  .toggle-btn:hover {
+    background: #0f5b52;
+    transform: translateY(-1px);
+  }
 
-    .quiz-button {
-      display: inline-block;
-      background-color: #136f63;
-      color: white;
-      padding: 13px 26px;
-      border-radius: 10px;
-      border: none;
-      font-weight: bold;
-      font-size: 17px;
-      cursor: pointer;
-      transition: 0.2s;
-      margin-top: 22px;
-    }
+  .answer {
+    display: none;
+    margin-top: 10px;
+    background: #eef3ff;
+    border-radius: 8px;
+    padding: 12px 16px;
+  }
 
-    .quiz-button:hover {
-      background-color: #0f5b52;
-    }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 16px;
+    background: #fff;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.04);
+  }
+  th, td {
+    text-align: left;
+    padding: 12px 16px;
+    border-bottom: 1px solid #eee;
+  }
+  th {
+    background: #f3f7ff;
+    color: #174ea6;
+  }
 
-    table.terms {
-      width: 100%;
-      max-width: 920px;
-      border-collapse: collapse;
-      margin: 12px auto;
-      background: #fff;
-      border-radius: 8px;
-      overflow: hidden;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.04);
-      font-size: 18px;
-    }
-    table.terms th, table.terms td {
-      padding: 10px 12px;
-      text-align: left;
-      border-bottom: 1px solid #f0f0f0;
-    }
-    table.terms th {
-      background: #f3f7ff;
-      color: #174ea6;
-    }
+  .quiz-button {
+    display: inline-block;
+    background-color: #136f63;
+    color: white;
+    padding: 13px 26px;
+    border-radius: 10px;
+    border: none;
+    font-weight: bold;
+    font-size: 17px;
+    cursor: pointer;
+    transition: 0.2s;
+    margin-top: 22px;
+  }
 
-    .note { font-size: 1.25rem; color: #555; margin-top: 6px; }
-
-    * { box-sizing: border-box; scroll-behavior: smooth; }
-  </style>
+  .quiz-button:hover { background-color: #0f5b52; }
+</style>
 </head>
+
 <body>
 
-  <h1>Introduction to Genetics and Heredity</h1>
-  <p class="note">
-    Genetics is the study of how traits are passed from parents to offspring. This lesson introduces the core vocabulary and simple models (like Mendel's pea experiments) that explain why children resemble their parents.
+<h1>Lesson 1: Introduction to Genetics and Heredity</h1>
+<p>
+Genetics is the study of how traits and characteristics are passed from parents to their offspring. 
+It helps explain why we look similar to our parents yet still have our own unique features. 
+In this lesson, we’ll explore the foundation of heredity — from genes and alleles to the pioneering work of Gregor Mendel.
+</p>
+
+<!-- SECTION 1 -->
+<div class="section">
+  <h2>1. What is Genetics?</h2>
+  <p>
+    <strong>Genetics</strong> is the branch of biology that studies how traits are inherited. 
+    It explains how the information stored in the DNA of parents is passed down to their children.
+  </p>
+  <p>
+    Every living organism carries a set of instructions called <strong>genes</strong> that determine its features — 
+    like eye color, blood type, flower color, or height.
   </p>
 
-  <!-- 1. What is genetics -->
-  <div class="section">
-    <h2>1. What is Genetics?</h2>
-    <p>
-      Genetics is the science of heredity and variation. It explains how characteristics (traits) such as eye color, seed shape, or height are transmitted across generations.
-    </p>
+   <div class="video">
+     <h3>DNA, Chromosomes, Genes, and Traits: An Intro to Heredity</h3>
+     <iframe src="https://www.youtube.com/embed/8m6hHRlKwxY" title="DNA, Chromosomes, Genes, and Traits: An Intro to Heredity"
+      allowfullscreen></iframe>
+   </div>
+</div>
 
-    <h3>Key idea</h3>
+<!-- SECTION 2 -->
+<div class="section">
+  <h2>2. Heredity and Variation</h2>
+  <p>
+    <strong>Heredity</strong> is the process through which traits are passed from parents to offspring.
+    This explains why children often share physical resemblances with their parents.
+  </p>
+  <p>
+    However, not all offspring are identical. Differences among individuals of the same species are called 
+    <strong>variations</strong>. These variations make populations more adaptable and are the foundation for evolution.
+  </p>
+
+  <div class="activity">
+    <h3>Activity 1: Family resemblance</h3>
     <p>
-      A trait is determined by <strong>genes</strong> — segments of DNA that carry instructions for making proteins. Each gene can have different forms called <strong>alleles</strong>.
+      List three physical traits you share with your parents or relatives. Then list one or two that are unique to you.
     </p>
+    <button class="toggle-btn" onclick="toggleAnswer(this)">Show Example</button>
+    <div class="answer">
+      <p><strong>Example:</strong> Same brown eyes and curly hair as my mother; taller than both parents.</p>
+    </div>
+  </div>
+</div>
+
+<!-- SECTION 3 -->
+<div class="section">
+  <h2>3. Genes, Alleles, and Traits</h2>
+  <p>
+    Traits are controlled by <strong>genes</strong>, which are small segments of DNA found on <strong>chromosomes</strong>. 
+    Each gene can have different forms called <strong>alleles</strong>. 
+    One allele may be <strong>dominant</strong> (stronger expression) while the other is <strong>recessive</strong> (masked in presence of dominant).
+  </p>
+
+  <div class="image">
+    <img src="https://nursehub.com/wp-content/uploads/h5p/content/1151/images/file-66830a60ad3f3.png" alt="gene allele chromosome diagram">
+    <p><em>Each gene occupies a specific position on a chromosome and may have alternate forms (alleles).</em></p>
   </div>
 
-  <!-- 2. Genotype vs Phenotype -->
-  <div class="section">
-    <h2>2. Genotype and Phenotype</h2>
-    <p><strong>Genotype</strong> = the genetic makeup (the alleles an organism carries). <strong>Phenotype</strong> = the observable traits (what you can see).</p>
+  <p>
+    The combination of alleles that an organism carries is its <strong>genotype</strong>.
+    The physical expression of those alleles (like hair color or height) is its <strong>phenotype</strong>.
+  </p>
 
-    <div class="activity">
-      <h3>Activity 1: Genotype → Phenotype</h3>
-      <p>Given the gene for flower color: allele R (red, dominant) and allele r (white, recessive). Match the genotype to phenotype:</p>
+  <div class="activity">
+    <h3>Activity 2: Determining phenotype</h3>
+    <p>
+      If the gene for seed color has alleles “Y” (yellow, dominant) and “y” (green, recessive), what color seeds will these plants have?
+      <br><strong>Genotypes:</strong> YY, Yy, yy
+    </p>
+    <button class="toggle-btn" onclick="toggleAnswer(this)">Show Answer</button>
+    <div class="answer">
       <ul>
-        <li>RR → ?</li>
-        <li>Rr → ?</li>
-        <li>rr → ?</li>
+        <li>YY → Yellow (dominant, homozygous dominant)</li>
+        <li>Yy → Yellow (dominant, heterozygous)</li>
+        <li>yy → Green (recessive, homozygous recessive)</li>
       </ul>
-      <button class="toggle-btn" onclick="toggleAnswer(this)">Show Answer</button>
-      <div class="answer">
-        <ol>
-          <li><strong>RR</strong> → Red (homozygous dominant)</li>
-          <li><strong>Rr</strong> → Red (heterozygous; dominant allele masks recessive)</li>
-          <li><strong>rr</strong> → White (homozygous recessive)</li>
-        </ol>
-      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SECTION 4 -->
+<div class="section">
+  <h2>4. Mendel: The Father of Genetics</h2>
+  <div class="image">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3d/Gregor_Mendel_oval.jpg/250px-Gregor_Mendel_oval.jpg" alt="Gregor Mendel">
+    <p><em>Gregor Mendel - Father of Genetics</em></p>
+  </div>
+  <p>
+    <strong>Gregor Mendel</strong> was an Austrian monk who, in the mid-1800s, performed experiments on pea plants. 
+    By carefully cross-breeding plants and observing traits like color and shape, he discovered predictable patterns of inheritance.
+  </p>
+  <p>
+    His observations led to what we now call the <strong>Laws of Inheritance</strong> — which explain how traits are passed down from generation to generation.
+  </p>
+
+  <div class="image">
+    <img src="https://resources.cdn.yaclass.in/568d2316-d8f6-414f-be3d-7601672df76b/shutterstock14620686441w500.png" alt="Gregor Mendel experiment">
+    <p><em>Mendel’s pea plant experiments laid the foundation of modern genetics.</em></p>
+  </div>
+
+  <div class="activity">
+    <h3>Activity 3: What did Mendel discover?</h3>
+    <p>
+      Mendel noticed that when he crossed a pure tall plant (TT) with a pure short plant (tt), 
+      all the offspring were tall (Tt). What does this tell us about the alleles for height?
+    </p>
+    <button class="toggle-btn" onclick="toggleAnswer(this)">Show Answer</button>
+    <div class="answer">
+      <p>The allele for tallness (T) is <strong>dominant</strong> over the allele for shortness (t).</p>
     </div>
   </div>
 
-  <!-- 3. Genes, alleles, chromosomes -->
-  <div class="section">
-    <h2>3. Genes, Alleles & Chromosomes</h2>
-    <p>
-      Genes live on chromosomes — long DNA molecules packaged with proteins. Most organisms inherit one set of chromosomes from each parent, so genes usually come in pairs (two alleles).
-    </p>
-
+  <div class="activity">
+    <h3>Watch and Learn</h3>
+    <p>Watch this short video introducing Gregor Mendel and his pea plant experiments.</p>
     <div class="image">
-      <img src="https://i.imgur.com/3q1p9q7.png" alt="DNA gene chromosome illustration">
-      <p class="note"><em>DNA → gene → chromosome: the nested hierarchy.</em></p>
-    </div>
-
-    <table class="terms">
-      <tr><th>Term</th><th>Simple definition</th></tr>
-      <tr><td>Gene</td><td>DNA segment that codes for a trait (e.g., flower color).</td></tr>
-      <tr><td>Allele</td><td>Alternative form of a gene (R or r).</td></tr>
-      <tr><td>Genotype</td><td>The alleles an organism carries (e.g., Rr).</td></tr>
-      <tr><td>Phenotype</td><td>The observable trait (e.g., red flowers).</td></tr>
-      <tr><td>Chromosome</td><td>Structure that carries many genes (made of DNA).</td></tr>
-    </table>
-  </div>
-
-  <!-- 4. Mendel -->
-  <div class="section">
-    <h2>4. Gregor Mendel — short story</h2>
-    <p>
-      Gregor Mendel (mid-1800s) carefully crossed pea plants and tracked traits (shape, color, seed texture). From patterns he discovered simple mathematical rules of inheritance — now known as Mendel's laws.
-    </p>
-
-    <div class="activity">
-      <h3>Activity 2: Mendel's experiment (quick question)</h3>
-      <p>Mendel observed that crossing pure-breeding tall plants with pure-breeding short plants produced all tall offspring (first generation). Which allele do you expect is dominant?</p>
-      <button class="toggle-btn" onclick="toggleAnswer(this)">Show Answer</button>
-      <div class="answer">
-        <p><strong>Answer:</strong> The allele for tallness is dominant — it masks the short allele in hybrids.</p>
-      </div>
-    </div>
-
-    <div class="video">
-      <h3>Short explainer</h3>
-      <!-- You can replace the iframe with your preferred video -->
-      <iframe src="https://www.youtube.com/embed/1StmY1wtxgQ" title="Intro to Mendel" allowfullscreen></iframe>
+      <iframe width="100%" height="400" src="https://www.youtube.com/embed/Mehz7tCxjSE" title="Gregor Mendel and Genetics" allowfullscreen></iframe>
     </div>
   </div>
+</div>
 
-  <!-- 5. Simple Punnett square example -->
-  <div class="section">
-    <h2>5. Predicting inheritance: Punnett square (monohybrid)</h2>
-    <p>
-      A Punnett square is a simple grid that shows how parental alleles combine in offspring. Example: cross Rr × Rr (heterozygote × heterozygote).
-    </p>
-    <ul>
-      <li>Possible gametes: R or r (from each parent)</li>
-      <li>Offspring genotypes: RR, Rr, rR, rr → genotype ratio 1 : 2 : 1</li>
-      <li>Phenotype (if R is dominant): 3 red : 1 white</li>
-    </ul>
+<!-- SUMMARY -->
+<div class="section">
+  <h2>Lesson Summary</h2>
+  <ul>
+    <li><strong>Genetics</strong> is the study of how traits are passed from parents to offspring.</li>
+    <li><strong>Heredity</strong> ensures the transmission of genetic information across generations.</li>
+    <li><strong>Genes</strong> are segments of DNA, and <strong>alleles</strong> are their alternative forms.</li>
+    <li><strong>Genotype</strong> refers to genetic makeup; <strong>phenotype</strong> is the physical expression.</li>
+    <li><strong>Gregor Mendel</strong> discovered the basic principles of inheritance through his pea plant experiments.</li>
+  </ul>
 
-    <div class="activity">
-      <h3>Activity 3: Practice — fill the square</h3>
-      <p>Predict the phenotype ratio when a homozygous dominant (RR) is crossed with a heterozygote (Rr).</p>
-      <button class="toggle-btn" onclick="toggleAnswer(this)">Show Answer</button>
-      <div class="answer">
-        <p><strong>Answer:</strong> All offspring receive at least one R: genotypes = RR and Rr → phenotype = 100% red (dominant).</p>
-      </div>
-    </div>
-  </div>
+  <table>
+    <tr><th>Term</th><th>Simple Meaning</th></tr>
+    <tr><td>Genetics</td><td>Study of heredity and variation.</td></tr>
+    <tr><td>Gene</td><td>Unit of heredity controlling a trait.</td></tr>
+    <tr><td>Allele</td><td>Alternate form of a gene.</td></tr>
+    <tr><td>Genotype</td><td>Set of alleles an organism has.</td></tr>
+    <tr><td>Phenotype</td><td>Observable traits of an organism.</td></tr>
+  </table>
+</div>
 
-  <!-- 6. Why it matters -->
-  <div class="section">
-    <h2>6. Why genetics matters</h2>
-    <p>
-      Genetics explains inherited diseases, crop breeding, biodiversity, and how traits spread in populations. Modern genetics extends Mendel's rules to complex traits and molecular mechanisms.
-    </p>
+<div style="text-align:center; margin-top:25px;">
+  <button class="quiz-button" id="takeQuizBtn">Take the Lesson Quiz →</button>
+</div>
 
-    <div class="activity">
-      <h3>Activity 4: Quick reflection</h3>
-      <p>Give one real-world example where understanding heredity is useful (medicine, agriculture, conservation).</p>
-      <button class="toggle-btn" onclick="toggleAnswer(this)">Show Suggested Answers</button>
-      <div class="answer">
-        <ul>
-          <li>Medicine: Genetic testing for inherited conditions (e.g., cystic fibrosis).</li>
-          <li>Agriculture: Breeding crops for disease resistance and yield.</li>
-          <li>Conservation: Managing breeding in endangered species to maintain diversity.</li>
-        </ul>
-      </div>
-    </div>
-  </div>
+<script>
+  function toggleAnswer(btn) {
+    const answer = btn.nextElementSibling;
+    const visible = answer.style.display === "block";
+    answer.style.display = visible ? "none" : "block";
+    btn.textContent = visible ? "Show Answer" : "Hide Answer";
+  }
 
-  <!-- 7. Lesson summary -->
-  <div class="section">
-    <h2>7. Lesson summary</h2>
-    <ul>
-      <li>Genetics studies how traits pass from parents to offspring via genes and alleles.</li>
-      <li>Genotype = genetic makeup; phenotype = observable trait.</li>
-      <li>Mendel's pea experiments revealed predictable inheritance patterns that form the foundation for classical genetics.</li>
-    </ul>
-  </div>
+  document.getElementById("takeQuizBtn").addEventListener("click", () => {
+    window.parent.postMessage({
+      type: "openQuiz",
+      quiz: "chapter2_lesson1_quiz.html"
+    }, "*");
+  });
+</script>
 
-  <div style="text-align:center; margin-top:18px;">
-    <button class="quiz-button" id="takeQuizBtn">Take the Lesson Quiz →</button>
-  </div>
-
-  <script>
-    function toggleAnswer(btn) {
-      const answer = btn.nextElementSibling;
-      if (!answer) return;
-      const isVisible = answer.style.display === "block";
-      answer.style.display = isVisible ? "none" : "block";
-      btn.textContent = isVisible ? "Show Answer" : "Hide Answer";
-    }
-
-    document.getElementById('takeQuizBtn').addEventListener('click', () => {
-      window.parent.postMessage({
-        type: 'openQuiz',
-        quiz: 'chapter2_lesson1_quiz.html'
-      }, '*');
-    });
-  </script>
 </body>
 </html>
