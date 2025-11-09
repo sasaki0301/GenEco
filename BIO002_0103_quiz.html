@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Lesson 3 Quiz: Nutrition and Gas Exchange</title>
   <style>
-  /* === Base Page === */
   body {
     font-family: "Segoe UI", Arial, sans-serif;
     background: linear-gradient(135deg, #e8f9f1, #f7faff);
@@ -17,8 +16,6 @@
     justify-content: center;
     min-height: 100vh;
   }
-
-  /* === Quiz Card === */
   .quiz-container {
     background: #ffffff;
     border-radius: 18px;
@@ -27,16 +24,12 @@
     width: 95%;
     max-width: 850px;
     text-align: center;
-    position: relative;
   }
-
   h2 {
     color: #136f63;
     margin-bottom: 25px;
     font-size: 1.8em;
   }
-
-  /* === Progress Bar === */
   .progress-wrapper {
     background: #e9f5ef;
     border-radius: 8px;
@@ -44,14 +37,12 @@
     width: 100%;
     margin-bottom: 25px;
     overflow: hidden;
-    box-shadow: inset 0 1px 4px rgba(0,0,0,0.1);
   }
   .progress-bar {
     height: 100%;
     background: linear-gradient(to right, #136f63, #2b7de9);
     width: 0%;
     transition: width 0.4s ease;
-    border-radius: 8px;
   }
   .progress-text {
     text-align: right;
@@ -60,8 +51,6 @@
     margin-bottom: 10px;
     font-weight: 600;
   }
-
-  /* === Questions === */
   .question {
     font-size: 1.3em;
     font-weight: 600;
@@ -72,7 +61,7 @@
     display: flex;
     flex-direction: column;
     gap: 12px;
-    margin-bottom: 25px;
+    margin-bottom: 20px;
   }
   .choice {
     background: #e8ecf8;
@@ -85,9 +74,18 @@
     transition: all 0.2s ease;
   }
   .choice:hover { background: #d3dbf8; transform: translateY(-2px); }
-  .choice.selected { background: #174ea6; color: #fff; transform: scale(1.02); }
-
-  /* === Buttons === */
+  .choice.correct { background: #136f63; color: #fff; }
+  .choice.incorrect { background: #e57373; color: #fff; }
+  .explanation {
+    background: #eef3ff;
+    border-radius: 10px;
+    padding: 14px 18px;
+    text-align: left;
+    margin-bottom: 20px;
+    font-size: 0.95em;
+    color: #174ea6;
+    display: none;
+  }
   .next-btn {
     background: #136f63;
     color: #fff;
@@ -100,32 +98,17 @@
     transition: 0.2s;
   }
   .next-btn:hover { background: #0f5b52; }
-
-  /* === Result Section === */
   .result {
     font-size: 1.4em;
     font-weight: bold;
     color: #174ea6;
     margin-top: 20px;
   }
-
   .stars {
     font-size: 2.5em;
     margin-top: 10px;
     margin-bottom: 5px;
   }
-
-  .star {
-    color: #ccc;
-    transition: transform 0.3s ease, color 0.3s ease;
-  }
-
-  .star.gold {
-    color: gold;
-    text-shadow: 0 0 8px rgba(255, 215, 0, 0.6);
-    transform: scale(1.1);
-  }
-
   .quiz-nav {
     margin-top: 25px;
     display: flex;
@@ -133,7 +116,6 @@
     flex-wrap: wrap;
     gap: 10px;
   }
-
   .quiz-btn {
     background: #e8ecf8;
     color: #174ea6;
@@ -147,17 +129,15 @@
   .quiz-btn:hover { background: #d3dbf8; transform: translateY(-2px); }
   .quiz-btn.primary { background: #136f63; color: #fff; }
   .quiz-btn.primary:hover { background: #0f5b52; }
-
   @media (max-width: 600px) {
     .quiz-container { padding: 25px; }
     .question { font-size: 1.1em; }
     .stars { font-size: 2em; }
   }
-</style>
+  </style>
 </head>
 <body>
-
-   <div class="quiz-container">
+  <div class="quiz-container">
     <h2>Nutrition and Gas Exchange – Quiz</h2>
     <div class="progress-text" id="progressText">Question 1 of 10</div>
     <div class="progress-wrapper"><div class="progress-bar" id="progressBar"></div></div>
@@ -166,116 +146,134 @@
     <button id="nextBtn" class="next-btn" style="display:none;">Next</button>
   </div>
 
-  <script>
-    const quizData = [
-      { q: "1. What is the main purpose of nutrition in living organisms?", 
-        c: ["To provide energy and materials for growth and repair", "To remove carbon dioxide from the body", "To help plants release oxygen", "To control body temperature"],
-        a: 0 },
-      { q: "2. Which statement best describes autotrophic nutrition?", 
-        c: ["Organisms rely on others for food", "Organisms make their own food using sunlight and inorganic materials", "Organisms absorb nutrients from decaying matter", "Organisms live inside a host"],
-        a: 1 },
-      { q: "3. Which of the following is NOT a type of heterotrophic nutrition?", 
-        c: ["Holozoic", "Saprophytic", "Photosynthetic", "Parasitic"],
-        a: 2 },
-      { q: "4. In holozoic nutrition, which process occurs first?", 
-        c: ["Assimilation", "Ingestion", "Absorption", "Egestion"],
-        a: 1 },
-      { q: "5. Which organism shows saprophytic nutrition?", 
-        c: ["Cow", "Mushroom", "Tapeworm", "Human"],
-        a: 1 },
-      { q: "6. What is the main function of alveoli in the human lungs?", 
-        c: ["Pump air into the lungs", "Produce mucus for protection", "Exchange oxygen and carbon dioxide by diffusion", "Store oxygen temporarily"],
-        a: 2 },
-      { q: "7. How do photosynthesis and respiration complement each other?", 
-        c: ["Both use carbon dioxide and produce oxygen", "The gases produced by one are used by the other", "Both release energy in the form of light", "They are identical processes occurring in opposite directions"],
-        a: 1 },
-      { q: "8. Which type of holozoic organism eats both plants and animals?", 
-        c: ["Herbivore", "Carnivore", "Omnivore", "Detritivore"],
-        a: 2 },
-      { q: "9. What structures allow plants to exchange gases?", 
-        c: ["Chloroplasts", "Stomata", "Roots", "Lenticels only"],
-        a: 1 },
-      { q: "10. In animals, gas exchange is mainly needed to:", 
-        c: ["Obtain carbon dioxide for photosynthesis", "Release energy by respiration", "Remove oxygen from cells", "Absorb sunlight for energy"],
-        a: 1 }
-    ];
+<script>
+const quizData = [
+  { q: "1. What is the main purpose of nutrition in living organisms?",
+    c: ["To provide energy and materials for growth and repair", "To remove carbon dioxide from the body", "To help plants release oxygen", "To control body temperature"],
+    a: 0,
+    e: "Nutrition provides energy and building materials that support growth, repair, and vital life processes." },
+  { q: "2. Which statement best describes autotrophic nutrition?",
+    c: ["Organisms rely on others for food", "Organisms make their own food using sunlight and inorganic materials", "Organisms absorb nutrients from decaying matter", "Organisms live inside a host"],
+    a: 1,
+    e: "Autotrophs like plants use sunlight, carbon dioxide, and water to produce food through photosynthesis." },
+  { q: "3. Which of the following is NOT a type of heterotrophic nutrition?",
+    c: ["Holozoic", "Saprophytic", "Photosynthetic", "Parasitic"],
+    a: 2,
+    e: "Photosynthesis is an autotrophic process. Holozoic, saprophytic, and parasitic are all heterotrophic modes of nutrition." },
+  { q: "4. In holozoic nutrition, which process occurs first?",
+    c: ["Assimilation", "Ingestion", "Absorption", "Egestion"],
+    a: 1,
+    e: "Ingestion is the first step in holozoic nutrition, where food is taken into the organism before digestion and absorption." },
+  { q: "5. Which organism shows saprophytic nutrition?",
+    c: ["Cow", "Mushroom", "Tapeworm", "Human"],
+    a: 1,
+    e: "Mushrooms feed on decaying matter, making them saprophytes that absorb nutrients externally from decomposed materials." },
+  { q: "6. What is the main function of alveoli in the human lungs?",
+    c: ["Pump air into the lungs", "Produce mucus for protection", "Exchange oxygen and carbon dioxide by diffusion", "Store oxygen temporarily"],
+    a: 2,
+    e: "Alveoli are small air sacs where oxygen diffuses into the blood and carbon dioxide diffuses out — essential for gas exchange." },
+  { q: "7. How do photosynthesis and respiration complement each other?",
+    c: ["Both use carbon dioxide and produce oxygen", "The gases produced by one are used by the other", "Both release energy in the form of light", "They are identical processes occurring in opposite directions"],
+    a: 1,
+    e: "Photosynthesis produces oxygen used in respiration, while respiration produces carbon dioxide used in photosynthesis — a natural balance." },
+  { q: "8. Which type of holozoic organism eats both plants and animals?",
+    c: ["Herbivore", "Carnivore", "Omnivore", "Detritivore"],
+    a: 2,
+    e: "Omnivores consume both plant and animal matter, giving them a varied diet and adaptive feeding behavior." },
+  { q: "9. What structures allow plants to exchange gases?",
+    c: ["Chloroplasts", "Stomata", "Roots", "Lenticels only"],
+    a: 1,
+    e: "Stomata are small openings in leaves that control the exchange of gases like oxygen, carbon dioxide, and water vapor." },
+  { q: "10. In animals, gas exchange is mainly needed to:",
+    c: ["Obtain carbon dioxide for photosynthesis", "Release energy by respiration", "Remove oxygen from cells", "Absorb sunlight for energy"],
+    a: 1,
+    e: "Gas exchange provides oxygen needed for cellular respiration, which releases energy for the body’s functions." }
+];
 
-  let current = 0, score = 0, selected = null;
-  const quizBox = document.getElementById("quizBox");
-  const nextBtn = document.getElementById("nextBtn");
-  const progressText = document.getElementById("progressText");
-  const progressBar = document.getElementById("progressBar");
+let current = 0, score = 0;
+const quizBox = document.getElementById("quizBox");
+const nextBtn = document.getElementById("nextBtn");
+const progressText = document.getElementById("progressText");
+const progressBar = document.getElementById("progressBar");
 
-  function showQuestion() {
-    const q = quizData[current];
-    updateProgress();
-    quizBox.innerHTML = `<div class='question'>${q.q}</div><div class='choices'></div>`;
-    const choicesContainer = quizBox.querySelector(".choices");
-    q.c.forEach((choice, i) => {
-      const btn = document.createElement("button");
-      btn.className = "choice";
-      btn.innerHTML = choice;
-      btn.addEventListener("click", () => selectChoice(i));
-      choicesContainer.appendChild(btn);
-    });
-    nextBtn.style.display = "none";
-    selected = null;
-  }
-
-  function selectChoice(i) {
-    selected = i;
-    document.querySelectorAll(".choice").forEach((btn, idx) =>
-      btn.classList.toggle("selected", idx === i)
-    );
-    nextBtn.style.display = "inline-block";
-  }
-
-  nextBtn.addEventListener("click", () => {
-    if (selected === quizData[current].a) score++;
-    current++;
-    if (current < quizData.length) showQuestion(); else showResult();
+function showQuestion() {
+  const q = quizData[current];
+  updateProgress();
+  quizBox.innerHTML = `
+    <div class='question'>${q.q}</div>
+    <div class='choices'></div>
+    <div class='explanation' id='explanation'></div>
+  `;
+  const choicesContainer = quizBox.querySelector(".choices");
+  q.c.forEach((choice, i) => {
+    const btn = document.createElement("button");
+    btn.className = "choice";
+    btn.innerHTML = choice;
+    btn.addEventListener("click", () => selectChoice(i));
+    choicesContainer.appendChild(btn);
   });
+  nextBtn.style.display = "none";
+}
 
-  function updateProgress() {
-    const percent = (current / quizData.length) * 100;
-    progressBar.style.width = percent + "%";
-    progressText.textContent = `Question ${current + 1} of ${quizData.length}`;
-  }
+function selectChoice(i) {
+  const q = quizData[current];
+  const explanationBox = document.getElementById("explanation");
+  document.querySelectorAll(".choice").forEach((btn, idx) => {
+    btn.disabled = true;
+    if (idx === q.a) btn.classList.add("correct");
+    if (idx === i && idx !== q.a) btn.classList.add("incorrect");
+  });
+  if (i === q.a) score++;
+  explanationBox.innerHTML = `<strong>Explanation:</strong> ${q.e}`;
+  explanationBox.style.display = "block";
+  nextBtn.style.display = "inline-block";
+}
 
-  function getStarRating(percent) {
-    if (percent === 100) return "⭐️⭐️⭐️";
-    else if (percent >= 90) return "⭐️⭐️☆";
-    else if (percent >= 80) return "⭐️☆☆";
-    else return "☆☆☆";
-  }
+nextBtn.addEventListener("click", () => {
+  current++;
+  if (current < quizData.length) showQuestion(); else showResult();
+});
 
-  function showResult() {
-    progressBar.style.width = "100%";
-    progressText.textContent = "Quiz Completed";
-    const percent = Math.round((score / quizData.length) * 100);
-    const passed = percent >= 80;
+function updateProgress() {
+  const percent = (current / quizData.length) * 100;
+  progressBar.style.width = percent + "%";
+  progressText.textContent = `Question ${current + 1} of ${quizData.length}`;
+}
 
-    quizBox.innerHTML = `
-      <div class='stars'>${getStarRating(percent)}</div>
-      <div class='result'>You scored ${score}/${quizData.length} (${percent}%)</div>
-      <div class='quiz-nav'>
-        <button class='quiz-btn' id='backBtn'>⬅ Back</button>
-        <button class='quiz-btn' id='retryBtn'>🔁 Retry</button>
-        <button class='quiz-btn primary' id='nextLessonBtn' ${passed ? "" : "disabled"}>➡ Next Lesson</button>
-      </div>
-    `;
+function getStarRating(percent) {
+  if (percent === 100) return "⭐️⭐️⭐️";
+  else if (percent >= 90) return "⭐️⭐️☆";
+  else if (percent >= 80) return "⭐️☆☆";
+  else return "☆☆☆";
+}
 
-    nextBtn.style.display = "none";
-    window.parent.postMessage({ type: "quizResult", score: percent, passed }, "*");
+function showResult() {
+  progressBar.style.width = "100%";
+  progressText.textContent = "Quiz Completed";
+  const percent = Math.round((score / quizData.length) * 100);
+  const passed = percent >= 80;
 
-    document.getElementById("retryBtn").addEventListener("click", retryQuiz);
-    document.getElementById("backBtn").addEventListener("click", () => window.parent.postMessage({ type: "quizBack" }, "*"));
-    document.getElementById("nextLessonBtn").addEventListener("click", () => { if (passed) window.parent.postMessage({ type: "quizNextLesson" }, "*"); });
-  }
+  quizBox.innerHTML = `
+    <div class='stars'>${getStarRating(percent)}</div>
+    <div class='result'>You scored ${score}/${quizData.length} (${percent}%)</div>
+    <div class='quiz-nav'>
+      <button class='quiz-btn' id='backBtn'>⬅ Back</button>
+      <button class='quiz-btn' id='retryBtn'>🔁 Retry</button>
+      <button class='quiz-btn primary' id='nextLessonBtn' ${passed ? "" : "disabled"}>➡ Next Lesson</button>
+    </div>
+  `;
 
-  function retryQuiz() { current = 0; score = 0; showQuestion(); }
+  nextBtn.style.display = "none";
+  window.parent.postMessage({ type: "quizResult", score: percent, passed }, "*");
 
-  showQuestion();
-  </script>
+  document.getElementById("retryBtn").addEventListener("click", retryQuiz);
+  document.getElementById("backBtn").addEventListener("click", () => window.parent.postMessage({ type: "quizBack" }, "*"));
+  document.getElementById("nextLessonBtn").addEventListener("click", () => { if (passed) window.parent.postMessage({ type: "quizNextLesson" }, "*"); });
+}
+
+function retryQuiz() { current = 0; score = 0; showQuestion(); }
+
+showQuestion();
+</script>
 </body>
 </html>
