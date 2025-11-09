@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Chapter 2 – Lesson 2: Mendel’s First Law — Law of Dominance</title>
+<style>
+  body {
+    font-family: "Segoe UI", Arial, sans-serif;
+    background: linear-gradient(135deg, #f0fbf7, #f3f7ff);
+    color: #222;
+    margin: 0;
+    padding: 32px 24px;
+    line-height: 1.7;
+    font-size: 18px;
+  }
+
+  h1 {
+    color: #136f63;
+    font-size: 2em;
+    margin-bottom: 0.5em;
+  }
+  h2 {
+    color: #136f63;
+    font-size: 1.45em;
+    margin-top: 1.2em;
+    margin-bottom: 0.3em;
+  }
+  h3 {
+    color: #174ea6;
+    font-size: 1.05em;
+    margin-top: 0.7em;
+  }
+  p {
+    margin: 10px 0;
+  }
+
+  ul { margin-left: 28px; }
+
+  .section {
+    margin-bottom: 28px;
+    background: #fff;
+    border-radius: 14px;
+    padding: 24px 28px;
+    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.05);
+  }
+
+  .image {
+    text-align: center;
+    margin: 18px 0;
+  }
+
+  img {
+    width: 90%;
+    max-width: 650px;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+  }
+
+  .activity {
+    background: #f9fbff;
+    border-left: 5px solid #136f63;
+    border-radius: 8px;
+    padding: 14px 18px;
+    margin-top: 14px;
+  }
+
+  .toggle-btn {
+    background: #136f63;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 9px 16px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.2s;
+    margin-top: 10px;
+  }
+
+  .toggle-btn:hover {
+    background: #0f5b52;
+    transform: translateY(-1px);
+  }
+
+  .answer {
+    display: none;
+    margin-top: 10px;
+    background: #eef3ff;
+    border-radius: 8px;
+    padding: 12px 16px;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 16px;
+    background: #fff;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.04);
+  }
+  th, td {
+    text-align: left;
+    padding: 12px 16px;
+    border-bottom: 1px solid #eee;
+  }
+  th {
+    background: #f3f7ff;
+    color: #174ea6;
+  }
+
+  .quiz-button {
+    display: inline-block;
+    background-color: #136f63;
+    color: white;
+    padding: 13px 26px;
+    border-radius: 10px;
+    border: none;
+    font-weight: bold;
+    font-size: 17px;
+    cursor: pointer;
+    transition: 0.2s;
+    margin-top: 22px;
+  }
+
+  .quiz-button:hover { background-color: #0f5b52; }
+</style>
+</head>
+
+<body>
+
+<h1>Lesson 2: Mendel’s First Law — Law of Dominance</h1>
+<p>
+Gregor Mendel’s experiments revealed that traits are not blended together but are controlled by discrete units — what we now call <strong>genes</strong>.  
+His <strong>Law of Dominance</strong> explains why one trait can mask another when both are inherited.
+</p>
+
+<!-- SECTION 1 -->
+<div class="section">
+  <h2>1. Mendel’s Observations on Pea Plants</h2>
+  <p>
+    In his experiments, Mendel crossed pea plants with different traits — for example, tall (TT) and short (tt).  
+    He observed that all the first-generation (F₁) offspring were tall.
+  </p>
+  <p>
+    This result showed that one trait (tallness) dominated the other (shortness).  
+    Mendel called the stronger trait <strong>dominant</strong> and the hidden one <strong>recessive</strong>.
+  </p>
+
+  <div class="image">
+    <img src="https://i.imgur.com/HbQVRba.png" alt="Mendel Pea Plants Dominant and Recessive">
+    <p><em>When tall (TT) plants were crossed with short (tt), all offspring were tall (Tt).</em></p>
+  </div>
+
+  <div class="activity">
+    <h3>Activity 1: Observe Mendel’s Cross</h3>
+    <p>
+      What trait was dominant in Mendel’s tall × short pea plant experiment, and what happened to the short trait?
+    </p>
+    <button class="toggle-btn" onclick="toggleAnswer(this)">Show Answer</button>
+    <div class="answer">
+      <p>The tall trait was <strong>dominant</strong>, and the short trait was <strong>recessive</strong> (hidden in the F₁ generation).</p>
+    </div>
+  </div>
+</div>
+
+<!-- SECTION 2 -->
+<div class="section">
+  <h2>2. Law of Dominance Explained</h2>
+  <p>
+    Mendel’s <strong>Law of Dominance</strong> states that when two organisms with contrasting traits are crossed,  
+    the trait that appears in the first generation (F₁) is the <strong>dominant</strong> trait,  
+    while the one that is hidden is the <strong>recessive</strong> trait.
+  </p>
+  <p>
+    Dominant alleles mask the expression of recessive alleles. Only when two recessive alleles pair (e.g., <strong>tt</strong>) does the recessive trait appear.
+  </p>
+
+  <table>
+    <tr><th>Genotype</th><th>Phenotype</th><th>Explanation</th></tr>
+    <tr><td>TT</td><td>Tall</td><td>Both alleles are dominant.</td></tr>
+    <tr><td>Tt</td><td>Tall</td><td>Dominant T masks the recessive t.</td></tr>
+    <tr><td>tt</td><td>Short</td><td>No dominant allele present, recessive trait expressed.</td></tr>
+  </table>
+
+  <div class="activity">
+    <h3>Activity 2: Think and Explain</h3>
+    <p>If a brown-eyed (BB) parent and a blue-eyed (bb) parent have children, what eye color will the offspring have?</p>
+    <button class="toggle-btn" onclick="toggleAnswer(this)">Show Answer</button>
+    <div class="answer">
+      <p>All offspring will have <strong>brown eyes (Bb)</strong> because brown is dominant over blue.</p>
+    </div>
+  </div>
+</div>
+
+<!-- SECTION 3 -->
+<div class="section">
+  <h2>3. Punnett Square Demonstration</h2>
+  <p>
+    A <strong>Punnett Square</strong> is a simple diagram used to predict the possible genetic outcomes of a cross.
+  </p>
+  <p>Let’s explore three examples below:</p>
+
+  <h3>Example 1: Tall (TT) × Short (tt)</h3>
+  <div class="image">
+    <img src="https://i.imgur.com/c0aUq8H.png" alt="Punnett Square TT x tt">
+  </div>
+  <p>All offspring are Tt → 100% Tall (dominant trait).</p>
+
+  <h3>Example 2: Heterozygous Tall (Tt) × Heterozygous Tall (Tt)</h3>
+  <div class="image">
+    <img src="https://i.imgur.com/bU38HqE.png" alt="Punnett Square Tt x Tt">
+  </div>
+  <p>Genotypes: TT (25%), Tt (50%), tt (25%) → Phenotypes: 75% Tall, 25% Short.</p>
+
+  <h3>Example 3: Brown (Bb) × Blue (bb) Eyes</h3>
+  <div class="image">
+    <img src="https://i.imgur.com/4fxPfIc.png" alt="Punnett Square Bb x bb">
+  </div>
+  <p>Genotypes: Bb (50%), bb (50%) → Phenotypes: 50% Brown, 50% Blue.</p>
+</div>
+
+<!-- SECTION 4 -->
+<div class="section">
+  <h2>4. Practice Activity — Predict Outcomes</h2>
+  <div class="activity">
+    <h3>Activity 3: Predict the Offspring</h3>
+    <p>
+      A heterozygous black (Bb) mouse mates with a white (bb) mouse.  
+      What are the possible genotypes and phenotypes of the offspring?
+    </p>
+    <button class="toggle-btn" onclick="toggleAnswer(this)">Show Answer</button>
+    <div class="answer">
+      <p>
+        Genotypes: Bb and bb (1:1 ratio)<br>
+        Phenotypes: 50% black (Bb) and 50% white (bb)
+      </p>
+    </div>
+  </div>
+
+  <div class="activity">
+    <h3>Activity 4: Pea Plant Cross</h3>
+    <p>
+      Cross a pure yellow seed plant (YY) with a green seed plant (yy).  
+      Predict the color of the seeds in F₁ and F₂ generations.
+    </p>
+    <button class="toggle-btn" onclick="toggleAnswer(this)">Show Answer</button>
+    <div class="answer">
+      <p>
+        F₁: All yellow (Yy)<br>
+        F₂: 3 yellow : 1 green (when Yy × Yy)
+      </p>
+    </div>
+  </div>
+</div>
+
+<!-- SECTION 5 -->
+<div class="section">
+  <h2>5. Summary Table — Dominant vs. Recessive Traits</h2>
+  <ul>
+    <li>Dominant traits appear in offspring even if only one dominant allele is present.</li>
+    <li>Recessive traits appear only when both alleles are recessive.</li>
+    <li>Punnett squares help predict genotype and phenotype ratios.</li>
+  </ul>
+
+  <table>
+    <tr><th>Trait</th><th>Dominant Expression</th><th>Recessive Expression</th></tr>
+    <tr><td>Plant Height</td><td>Tall (T)</td><td>Short (t)</td></tr>
+    <tr><td>Seed Color</td><td>Yellow (Y)</td><td>Green (y)</td></tr>
+    <tr><td>Eye Color (Humans)</td><td>Brown (B)</td><td>Blue (b)</td></tr>
+    <tr><td>Hair Texture</td><td>Curly (C)</td><td>Straight (c)</td></tr>
+  </table>
+</div>
+
+<!-- KEY TERMS -->
+<div class="section">
+  <h2>Key Terms and Simple Meanings</h2>
+  <table>
+    <tr><th>Term</th><th>Meaning</th></tr>
+    <tr><td>Dominant Allele</td><td>Allele that expresses its trait even if only one copy is present.</td></tr>
+    <tr><td>Recessive Allele</td><td>Allele that is masked by a dominant one unless two copies are present.</td></tr>
+    <tr><td>Genotype</td><td>Combination of alleles an organism carries (e.g., Tt).</td></tr>
+    <tr><td>Phenotype</td><td>Physical expression of a genotype (e.g., tall plant).</td></tr>
+    <tr><td>Punnett Square</td><td>Tool for predicting possible offspring combinations.</td></tr>
+  </table>
+</div>
+
+<div style="text-align:center; margin-top:25px;">
+  <button class="quiz-button" id="takeQuizBtn">Take the Lesson Quiz →</button>
+</div>
+
+<script>
+function toggleAnswer(btn) {
+  const answer = btn.nextElementSibling;
+  const visible = answer.style.display === "block";
+  answer.style.display = visible ? "none" : "block";
+  btn.textContent = visible ? "Show Answer" : "Hide Answer";
+}
+
+document.getElementById("takeQuizBtn").addEventListener("click", () => {
+  window.parent.postMessage({
+    type: "openQuiz",
+    quiz: "chapter2_lesson2_quiz.html"
+  }, "*");
+});
+</script>
+
+</body>
+</html>
