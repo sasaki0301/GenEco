@@ -16,8 +16,6 @@
     justify-content: center;
     min-height: 100vh;
   }
-
-  /* === Quiz Card === */
   .quiz-container {
     background: #ffffff;
     border-radius: 18px;
@@ -26,16 +24,12 @@
     width: 95%;
     max-width: 850px;
     text-align: center;
-    position: relative;
   }
-
   h2 {
     color: #136f63;
     margin-bottom: 25px;
     font-size: 1.8em;
   }
-
-  /* === Progress Bar === */
   .progress-wrapper {
     background: #e9f5ef;
     border-radius: 8px;
@@ -43,14 +37,12 @@
     width: 100%;
     margin-bottom: 25px;
     overflow: hidden;
-    box-shadow: inset 0 1px 4px rgba(0,0,0,0.1);
   }
   .progress-bar {
     height: 100%;
     background: linear-gradient(to right, #136f63, #2b7de9);
     width: 0%;
     transition: width 0.4s ease;
-    border-radius: 8px;
   }
   .progress-text {
     text-align: right;
@@ -59,8 +51,6 @@
     margin-bottom: 10px;
     font-weight: 600;
   }
-
-  /* === Questions === */
   .question {
     font-size: 1.3em;
     font-weight: 600;
@@ -71,7 +61,7 @@
     display: flex;
     flex-direction: column;
     gap: 12px;
-    margin-bottom: 25px;
+    margin-bottom: 20px;
   }
   .choice {
     background: #e8ecf8;
@@ -84,9 +74,18 @@
     transition: all 0.2s ease;
   }
   .choice:hover { background: #d3dbf8; transform: translateY(-2px); }
-  .choice.selected { background: #174ea6; color: #fff; transform: scale(1.02); }
-
-  /* === Buttons === */
+  .choice.correct { background: #136f63; color: #fff; }
+  .choice.incorrect { background: #e57373; color: #fff; }
+  .explanation {
+    background: #eef3ff;
+    border-radius: 10px;
+    padding: 14px 18px;
+    text-align: left;
+    margin-bottom: 20px;
+    font-size: 0.95em;
+    color: #174ea6;
+    display: none;
+  }
   .next-btn {
     background: #136f63;
     color: #fff;
@@ -99,32 +98,17 @@
     transition: 0.2s;
   }
   .next-btn:hover { background: #0f5b52; }
-
-  /* === Result Section === */
   .result {
     font-size: 1.4em;
     font-weight: bold;
     color: #174ea6;
     margin-top: 20px;
   }
-
   .stars {
     font-size: 2.5em;
     margin-top: 10px;
     margin-bottom: 5px;
   }
-
-  .star {
-    color: #ccc;
-    transition: transform 0.3s ease, color 0.3s ease;
-  }
-
-  .star.gold {
-    color: gold;
-    text-shadow: 0 0 8px rgba(255, 215, 0, 0.6);
-    transform: scale(1.1);
-  }
-
   .quiz-nav {
     margin-top: 25px;
     display: flex;
@@ -132,7 +116,6 @@
     flex-wrap: wrap;
     gap: 10px;
   }
-
   .quiz-btn {
     background: #e8ecf8;
     color: #174ea6;
@@ -146,13 +129,12 @@
   .quiz-btn:hover { background: #d3dbf8; transform: translateY(-2px); }
   .quiz-btn.primary { background: #136f63; color: #fff; }
   .quiz-btn.primary:hover { background: #0f5b52; }
-
   @media (max-width: 600px) {
     .quiz-container { padding: 25px; }
     .question { font-size: 1.1em; }
     .stars { font-size: 2em; }
   }
-</style>
+  </style>
 </head>
 <body>
 
@@ -167,184 +149,132 @@
 
   <script>
     const quizData = [
-      {
-        q: "1. What is the main purpose of reproduction in living organisms?",
-        c: [
-          "To increase body size and complexity",
-          "To ensure the survival and continuity of a species",
-          "To produce energy for growth",
-          "To aid in adaptation to environment"
-        ],
-        a: 1
-      },
-      {
-        q: "2. In asexual reproduction, offspring are genetically identical because:",
-        c: [
-          "Gametes combine during fertilization",
-          "DNA comes from both parents",
-          "It involves only mitosis without genetic mixing",
-          "It occurs only in complex animals"
-        ],
-        a: 2
-      },
-      {
-        q: "3. Which of the following is NOT an example of asexual reproduction?",
-        c: [
-          "Binary fission in bacteria",
-          "Budding in hydra",
-          "Pollination in flowering plants",
-          "Spore formation in fungi"
-        ],
-        a: 2
-      },
-      {
-        q: "4. The process where pollen is transferred from the anther to the stigma is called:",
-        c: [
-          "Fertilization",
-          "Pollination",
-          "Germination",
-          "Propagation"
-        ],
-        a: 1
-      },
-      {
-        q: "5. Double fertilization in flowering plants results in:",
-        c: [
-          "Formation of two embryos",
-          "One embryo and one endosperm tissue",
-          "Two seeds in one ovary",
-          "Fusion of two egg cells"
-        ],
-        a: 1
-      },
-      {
-        q: "6. What is the correct order of stages in sexual reproduction of animals?",
-        c: [
-          "Zygote → Gametogenesis → Fertilization → Development",
-          "Gametogenesis → Fertilization → Zygote → Development",
-          "Fertilization → Gametogenesis → Embryo → Birth",
-          "Gamete fusion → Mutation → Growth → Differentiation"
-        ],
-        a: 1
-      },
-      {
-        q: "7. In alternation of generations, the haploid stage that produces gametes is called:",
-        c: [
-          "Sporophyte",
-          "Gametophyte",
-          "Endosperm",
-          "Zygote"
-        ],
-        a: 1
-      },
-      {
-        q: "8. Which plant group shows a dominant gametophyte generation?",
-        c: [
-          "Ferns",
-          "Mosses",
-          "Flowering plants",
-          "Conifers"
-        ],
-        a: 1
-      },
-      {
-        q: "9. How does sexual reproduction increase variation among offspring?",
-        c: [
-          "It produces identical offspring",
-          "It involves mutation during mitosis",
-          "It allows random gamete fusion and recombination during meiosis",
-          "It only occurs in favorable environments"
-        ],
-        a: 2
-      },
-      {
-        q: "10. Which of the following correctly compares plant and animal reproduction?",
-        c: [
-          "Both involve alternation of generations equally",
-          "Plants may reproduce asexually by vegetative parts; animals mostly require gametes",
-          "Animals undergo pollination, while plants undergo copulation",
-          "Both rely solely on external fertilization"
-        ],
-        a: 1
-      }
+      { q: "1. What is the main purpose of reproduction in living organisms?",
+        c: ["To increase body size and complexity", "To ensure the survival and continuity of a species", "To produce energy for growth", "To aid in adaptation to environment"],
+        a: 1,
+        e: "Reproduction allows species to produce offspring and ensure their survival over generations." },
+      { q: "2. In asexual reproduction, offspring are genetically identical because:",
+        c: ["Gametes combine during fertilization", "DNA comes from both parents", "It involves only mitosis without genetic mixing", "It occurs only in complex animals"],
+        a: 2,
+        e: "Asexual reproduction uses mitosis, producing clones with identical genetic material from one parent." },
+      { q: "3. Which of the following is NOT an example of asexual reproduction?",
+        c: ["Binary fission in bacteria", "Budding in hydra", "Pollination in flowering plants", "Spore formation in fungi"],
+        a: 2,
+        e: "Pollination is part of sexual reproduction, involving the transfer of male gametes to the female part of a plant." },
+      { q: "4. The process where pollen is transferred from the anther to the stigma is called:",
+        c: ["Fertilization", "Pollination", "Germination", "Propagation"],
+        a: 1,
+        e: "Pollination is the transfer of pollen grains from the anther to the stigma for fertilization to occur later." },
+      { q: "5. Double fertilization in flowering plants results in:",
+        c: ["Formation of two embryos", "One embryo and one endosperm tissue", "Two seeds in one ovary", "Fusion of two egg cells"],
+        a: 1,
+        e: "In double fertilization, one sperm fertilizes the egg (forming the embryo), and another fuses with polar nuclei (forming the endosperm)." },
+      { q: "6. What is the correct order of stages in sexual reproduction of animals?",
+        c: ["Zygote → Gametogenesis → Fertilization → Development", "Gametogenesis → Fertilization → Zygote → Development", "Fertilization → Gametogenesis → Embryo → Birth", "Gamete fusion → Mutation → Growth → Differentiation"],
+        a: 1,
+        e: "Sexual reproduction follows the order: gametogenesis (formation of gametes), fertilization, zygote formation, then development." },
+      { q: "7. In alternation of generations, the haploid stage that produces gametes is called:",
+        c: ["Sporophyte", "Gametophyte", "Endosperm", "Zygote"],
+        a: 1,
+        e: "The gametophyte is the haploid stage that produces gametes through mitosis, alternating with the diploid sporophyte." },
+      { q: "8. Which plant group shows a dominant gametophyte generation?",
+        c: ["Ferns", "Mosses", "Flowering plants", "Conifers"],
+        a: 1,
+        e: "Mosses have a dominant gametophyte stage, while in higher plants like ferns and angiosperms, the sporophyte is dominant." },
+      { q: "9. How does sexual reproduction increase variation among offspring?",
+        c: ["It produces identical offspring", "It involves mutation during mitosis", "It allows random gamete fusion and recombination during meiosis", "It only occurs in favorable environments"],
+        a: 2,
+        e: "Meiosis and random gamete fusion create genetic variation, ensuring adaptability in changing environments." },
+      { q: "10. Which of the following correctly compares plant and animal reproduction?",
+        c: ["Both involve alternation of generations equally", "Plants may reproduce asexually by vegetative parts; animals mostly require gametes", "Animals undergo pollination, while plants undergo copulation", "Both rely solely on external fertilization"],
+        a: 1,
+        e: "Plants can reproduce through vegetative parts or seeds, while most animals depend on sexual reproduction using gametes." }
     ];
 
-   let current = 0, score = 0, selected = null;
-  const quizBox = document.getElementById("quizBox");
-  const nextBtn = document.getElementById("nextBtn");
-  const progressText = document.getElementById("progressText");
-  const progressBar = document.getElementById("progressBar");
+    let current = 0, score = 0;
+    const quizBox = document.getElementById("quizBox");
+    const nextBtn = document.getElementById("nextBtn");
+    const progressText = document.getElementById("progressText");
+    const progressBar = document.getElementById("progressBar");
 
-  function showQuestion() {
-    const q = quizData[current];
-    updateProgress();
-    quizBox.innerHTML = `<div class='question'>${q.q}</div><div class='choices'></div>`;
-    const choicesContainer = quizBox.querySelector(".choices");
-    q.c.forEach((choice, i) => {
-      const btn = document.createElement("button");
-      btn.className = "choice";
-      btn.innerHTML = choice;
-      btn.addEventListener("click", () => selectChoice(i));
-      choicesContainer.appendChild(btn);
+    function showQuestion() {
+      const q = quizData[current];
+      updateProgress();
+      quizBox.innerHTML = `
+        <div class='question'>${q.q}</div>
+        <div class='choices'></div>
+        <div class='explanation' id='explanation'></div>
+      `;
+      const choicesContainer = quizBox.querySelector(".choices");
+      q.c.forEach((choice, i) => {
+        const btn = document.createElement("button");
+        btn.className = "choice";
+        btn.innerHTML = choice;
+        btn.addEventListener("click", () => selectChoice(i));
+        choicesContainer.appendChild(btn);
+      });
+      nextBtn.style.display = "none";
+    }
+
+    function selectChoice(i) {
+      const q = quizData[current];
+      const explanationBox = document.getElementById("explanation");
+      document.querySelectorAll(".choice").forEach((btn, idx) => {
+        btn.disabled = true;
+        if (idx === q.a) btn.classList.add("correct");
+        if (idx === i && idx !== q.a) btn.classList.add("incorrect");
+      });
+      if (i === q.a) score++;
+      explanationBox.innerHTML = `<strong>Explanation:</strong> ${q.e}`;
+      explanationBox.style.display = "block";
+      nextBtn.style.display = "inline-block";
+    }
+
+    nextBtn.addEventListener("click", () => {
+      current++;
+      if (current < quizData.length) showQuestion(); else showResult();
     });
-    nextBtn.style.display = "none";
-    selected = null;
-  }
 
-  function selectChoice(i) {
-    selected = i;
-    document.querySelectorAll(".choice").forEach((btn, idx) =>
-      btn.classList.toggle("selected", idx === i)
-    );
-    nextBtn.style.display = "inline-block";
-  }
+    function updateProgress() {
+      const percent = (current / quizData.length) * 100;
+      progressBar.style.width = percent + "%";
+      progressText.textContent = `Question ${current + 1} of ${quizData.length}`;
+    }
 
-  nextBtn.addEventListener("click", () => {
-    if (selected === quizData[current].a) score++;
-    current++;
-    if (current < quizData.length) showQuestion(); else showResult();
-  });
+    function getStarRating(percent) {
+      if (percent === 100) return "⭐️⭐️⭐️";
+      else if (percent >= 90) return "⭐️⭐️☆";
+      else if (percent >= 80) return "⭐️☆☆";
+      else return "☆☆☆";
+    }
 
-  function updateProgress() {
-    const percent = (current / quizData.length) * 100;
-    progressBar.style.width = percent + "%";
-    progressText.textContent = `Question ${current + 1} of ${quizData.length}`;
-  }
+    function showResult() {
+      progressBar.style.width = "100%";
+      progressText.textContent = "Quiz Completed";
+      const percent = Math.round((score / quizData.length) * 100);
+      const passed = percent >= 80;
 
-  function getStarRating(percent) {
-    if (percent === 100) return "⭐️⭐️⭐️";
-    else if (percent >= 90) return "⭐️⭐️☆";
-    else if (percent >= 80) return "⭐️☆☆";
-    else return "☆☆☆";
-  }
+      quizBox.innerHTML = `
+        <div class='stars'>${getStarRating(percent)}</div>
+        <div class='result'>You scored ${score}/${quizData.length} (${percent}%)</div>
+        <div class='quiz-nav'>
+          <button class='quiz-btn' id='backBtn'>⬅ Back</button>
+          <button class='quiz-btn' id='retryBtn'>🔁 Retry</button>
+          <button class='quiz-btn primary' id='nextLessonBtn' ${passed ? "" : "disabled"}>➡ Next Lesson</button>
+        </div>
+      `;
 
-  function showResult() {
-    progressBar.style.width = "100%";
-    progressText.textContent = "Quiz Completed";
-    const percent = Math.round((score / quizData.length) * 100);
-    const passed = percent >= 80;
+      nextBtn.style.display = "none";
+      window.parent.postMessage({ type: "quizResult", score: percent, passed }, "*");
 
-    quizBox.innerHTML = `
-      <div class='stars'>${getStarRating(percent)}</div>
-      <div class='result'>You scored ${score}/${quizData.length} (${percent}%)</div>
-      <div class='quiz-nav'>
-        <button class='quiz-btn' id='backBtn'>⬅ Back</button>
-        <button class='quiz-btn' id='retryBtn'>🔁 Retry</button>
-        <button class='quiz-btn primary' id='nextLessonBtn' ${passed ? "" : "disabled"}>➡ Next Lesson</button>
-      </div>
-    `;
+      document.getElementById("retryBtn").addEventListener("click", retryQuiz);
+      document.getElementById("backBtn").addEventListener("click", () => window.parent.postMessage({ type: "quizBack" }, "*"));
+      document.getElementById("nextLessonBtn").addEventListener("click", () => { if (passed) window.parent.postMessage({ type: "quizNextLesson" }, "*"); });
+    }
 
-    nextBtn.style.display = "none";
-    window.parent.postMessage({ type: "quizResult", score: percent, passed }, "*");
+    function retryQuiz() { current = 0; score = 0; showQuestion(); }
 
-    document.getElementById("retryBtn").addEventListener("click", retryQuiz);
-    document.getElementById("backBtn").addEventListener("click", () => window.parent.postMessage({ type: "quizBack" }, "*"));
-    document.getElementById("nextLessonBtn").addEventListener("click", () => { if (passed) window.parent.postMessage({ type: "quizNextLesson" }, "*"); });
-  }
-
-  function retryQuiz() { current = 0; score = 0; showQuestion(); }
-
-  showQuestion();
+    showQuestion();
   </script>
 </body>
 </html>
