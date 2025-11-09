@@ -5,7 +5,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Chapter 1 – Lesson 1 Quiz: Levels of Biological Organization</title>
 <style>
-  /* === Base Page === */
   body {
     font-family: "Segoe UI", Arial, sans-serif;
     background: linear-gradient(135deg, #e8f9f1, #f7faff);
@@ -18,7 +17,6 @@
     min-height: 100vh;
   }
 
-  /* === Quiz Card === */
   .quiz-container {
     background: #ffffff;
     border-radius: 18px;
@@ -36,7 +34,6 @@
     font-size: 1.8em;
   }
 
-  /* === Progress Bar === */
   .progress-wrapper {
     background: #e9f5ef;
     border-radius: 8px;
@@ -61,7 +58,6 @@
     font-weight: 600;
   }
 
-  /* === Questions === */
   .question {
     font-size: 1.3em;
     font-weight: 600;
@@ -72,7 +68,7 @@
     display: flex;
     flex-direction: column;
     gap: 12px;
-    margin-bottom: 25px;
+    margin-bottom: 20px;
   }
   .choice {
     background: #e8ecf8;
@@ -85,9 +81,21 @@
     transition: all 0.2s ease;
   }
   .choice:hover { background: #d3dbf8; transform: translateY(-2px); }
-  .choice.selected { background: #174ea6; color: #fff; transform: scale(1.02); }
+  .choice.correct { background: #136f63; color: #fff; }
+  .choice.incorrect { background: #e57373; color: #fff; }
+  .choice.selected { transform: scale(1.02); }
 
-  /* === Buttons === */
+  .explanation {
+    background: #eef3ff;
+    border-radius: 10px;
+    padding: 14px 18px;
+    text-align: left;
+    margin-bottom: 20px;
+    font-size: 0.95em;
+    color: #174ea6;
+    display: none;
+  }
+
   .next-btn {
     background: #136f63;
     color: #fff;
@@ -101,7 +109,6 @@
   }
   .next-btn:hover { background: #0f5b52; }
 
-  /* === Result Section === */
   .result {
     font-size: 1.4em;
     font-weight: bold;
@@ -113,17 +120,6 @@
     font-size: 2.5em;
     margin-top: 10px;
     margin-bottom: 5px;
-  }
-
-  .star {
-    color: #ccc;
-    transition: transform 0.3s ease, color 0.3s ease;
-  }
-
-  .star.gold {
-    color: gold;
-    text-shadow: 0 0 8px rgba(255, 215, 0, 0.6);
-    transform: scale(1.1);
   }
 
   .quiz-nav {
@@ -168,19 +164,39 @@
 
 <script>
   const quizData = [
-    { q: "1. What is the smallest level of biological organization?", c: ["Cell","Atom","Molecule","Organelle"], a: 1 },
-    { q: "2. Which level comes directly after tissues in complexity?", c: ["Organ","Cell","Organ system","Organism"], a: 0 },
-    { q: "3. A group of similar organisms living in one area is called a ____.", c: ["Community","Population","Ecosystem","Species"], a: 1 },
-    { q: "4. What level represents all life and environments on Earth?", c: ["Biosphere","Ecosystem","Community","Habitat"], a: 0 },
-    { q: "5. The property that emerges when cells form tissues is called ____.", c: ["Genetic variation","Emergent property","Metabolism","Evolution"], a: 1 },
-    { q: "6. Which sequence is correctly ordered from smallest to largest?", c: ["Cell → Atom → Tissue","Atom → Molecule → Cell","Molecule → Cell → Atom","Tissue → Molecule → Organ"], a: 1 },
-    { q: "7. Which of the following includes both living and nonliving components?", c: ["Community","Population","Ecosystem","Biosphere"], a: 2 },
-    { q: "8. Which term describes groups of tissues working together for a function?", c: ["Organs","Cells","Systems","Populations"], a: 0 },
-    { q: "9. Which level contains all organisms of different species in an area?", c: ["Community","Population","Ecosystem","Organism"], a: 0 },
-    { q: "10. Why do biologists study multiple levels of organization?", c: ["To understand how simple parts form complex systems","To memorize organism names","To limit studies to one scale","Because levels are independent"], a: 0 }
+    { q: "1. What is the smallest level of biological organization?", 
+      c: ["Cell","Atom","Molecule","Organelle"], a: 1, 
+      e: "Atoms are the smallest units of matter and form the foundation of all higher biological structures." },
+    { q: "2. Which level comes directly after tissues in complexity?", 
+      c: ["Organ","Cell","Organ system","Organism"], a: 0, 
+      e: "Organs are made up of different tissues working together for a specific function." },
+    { q: "3. A group of similar organisms living in one area is called a ____.", 
+      c: ["Community","Population","Ecosystem","Species"], a: 1, 
+      e: "A population is a group of organisms of the same species living in the same area." },
+    { q: "4. What level represents all life and environments on Earth?", 
+      c: ["Biosphere","Ecosystem","Community","Habitat"], a: 0, 
+      e: "The biosphere includes all living things and the environments they inhabit on Earth." },
+    { q: "5. The property that emerges when cells form tissues is called ____.", 
+      c: ["Genetic variation","Emergent property","Metabolism","Evolution"], a: 1, 
+      e: "Emergent properties are new characteristics that arise from the interaction of simpler components." },
+    { q: "6. Which sequence is correctly ordered from smallest to largest?", 
+      c: ["Cell → Atom → Tissue","Atom → Molecule → Cell","Molecule → Cell → Atom","Tissue → Molecule → Organ"], a: 1, 
+      e: "The correct order is Atom → Molecule → Cell, showing increasing complexity." },
+    { q: "7. Which of the following includes both living and nonliving components?", 
+      c: ["Community","Population","Ecosystem","Biosphere"], a: 2, 
+      e: "An ecosystem includes both living (biotic) and nonliving (abiotic) components." },
+    { q: "8. Which term describes groups of tissues working together for a function?", 
+      c: ["Organs","Cells","Systems","Populations"], a: 0, 
+      e: "Organs are composed of multiple tissues that perform coordinated tasks." },
+    { q: "9. Which level contains all organisms of different species in an area?", 
+      c: ["Community","Population","Ecosystem","Organism"], a: 0, 
+      e: "A community includes all species interacting in the same area." },
+    { q: "10. Why do biologists study multiple levels of organization?", 
+      c: ["To understand how simple parts form complex systems","To memorize organism names","To limit studies to one scale","Because levels are independent"], a: 0, 
+      e: "Studying different levels helps understand how small-scale processes lead to complex life systems." }
   ];
 
-  let current = 0, score = 0, selected = null;
+  let current = 0, score = 0;
   const quizBox = document.getElementById("quizBox");
   const nextBtn = document.getElementById("nextBtn");
   const progressText = document.getElementById("progressText");
@@ -189,7 +205,11 @@
   function showQuestion() {
     const q = quizData[current];
     updateProgress();
-    quizBox.innerHTML = `<div class='question'>${q.q}</div><div class='choices'></div>`;
+    quizBox.innerHTML = `
+      <div class='question'>${q.q}</div>
+      <div class='choices'></div>
+      <div class='explanation' id='explanation'></div>
+    `;
     const choicesContainer = quizBox.querySelector(".choices");
     q.c.forEach((choice, i) => {
       const btn = document.createElement("button");
@@ -199,19 +219,23 @@
       choicesContainer.appendChild(btn);
     });
     nextBtn.style.display = "none";
-    selected = null;
   }
 
   function selectChoice(i) {
-    selected = i;
-    document.querySelectorAll(".choice").forEach((btn, idx) =>
-      btn.classList.toggle("selected", idx === i)
-    );
+    const q = quizData[current];
+    const explanationBox = document.getElementById("explanation");
+    document.querySelectorAll(".choice").forEach((btn, idx) => {
+      btn.disabled = true;
+      if (idx === q.a) btn.classList.add("correct");
+      if (idx === i && idx !== q.a) btn.classList.add("incorrect");
+    });
+    if (i === q.a) score++;
+    explanationBox.innerHTML = `<strong>Explanation:</strong> ${q.e}`;
+    explanationBox.style.display = "block";
     nextBtn.style.display = "inline-block";
   }
 
   nextBtn.addEventListener("click", () => {
-    if (selected === quizData[current].a) score++;
     current++;
     if (current < quizData.length) showQuestion(); else showResult();
   });
@@ -223,35 +247,27 @@
   }
 
   function showStars(percent) {
-    let starsHTML = "";
-    if (percent === 100) starsHTML = "⭐️⭐️⭐️";
-    else if (percent >= 90) starsHTML = "⭐️⭐️☆";
-    else if (percent >= 80) starsHTML = "⭐️☆☆";
-    else starsHTML = "☆☆☆";
-    return starsHTML;
+    if (percent === 100) return "⭐️⭐️⭐️";
+    else if (percent >= 90) return "⭐️⭐️☆";
+    else if (percent >= 80) return "⭐️☆☆";
+    else return "☆☆☆";
   }
 
   function showResult() {
     progressBar.style.width = "100%";
     progressText.textContent = "Quiz Completed";
-
     const percent = Math.round((score / quizData.length) * 100);
     const passed = percent >= 80;
 
     quizBox.innerHTML = `
-      <div class='stars' id='stars'>${showStars(percent)}</div>
+      <div class='stars'>${showStars(percent)}</div>
       <div class='result'>You scored ${score}/${quizData.length} (${percent}%)</div>
       <div class='quiz-nav'>
         <button class='quiz-btn' id='backBtn'>⬅ Back</button>
         <button class='quiz-btn' id='retryBtn'>🔁 Retry</button>
         <button class='quiz-btn primary' id='nextLessonBtn' ${passed ? "" : "disabled"}>➡ Next Lesson</button>
       </div>`;
-
-    // Animate stars
-    document.querySelectorAll('.stars .star').forEach((s, i) => {
-      setTimeout(() => s.classList.add('gold'), 200 * i);
-    });
-
+      
     nextBtn.style.display = "none";
     window.parent.postMessage({ type: "quizResult", score: percent, passed }, "*");
 
