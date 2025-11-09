@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Chapter 2 – Lesson 3: Mendel’s Second Law — Law of Segregation</title>
+<style>
+  /* === PAGE BASE STYLE === */
+  body {
+    font-family: "Segoe UI", Arial, sans-serif;
+    background: linear-gradient(135deg, #f0fbf7, #f3f7ff);
+    color: #222;
+    margin: 0;
+    padding: 32px 24px;
+    line-height: 1.7;
+    font-size: 18px;
+  }
+
+  iframe {
+    width: 100%;
+    height: 400px;
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    margin: 12px 0;
+  }
+
+  h1 {
+    color: #136f63;
+    font-size: 2em;
+    margin-bottom: 0.5em;
+  }
+  h2 {
+    color: #136f63;
+    font-size: 1.45em;
+    margin-top: 1.2em;
+    margin-bottom: 0.3em;
+  }
+  h3 {
+    color: #174ea6;
+    font-size: 1.05em;
+    margin-top: 0.7em;
+  }
+  p { margin: 10px 0; }
+  ul { margin-left: 28px; }
+
+  .section {
+    margin-bottom: 28px;
+    background: #fff;
+    border-radius: 14px;
+    padding: 24px 28px;
+    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.05);
+  }
+
+  .image {
+    text-align: center;
+    margin: 18px 0;
+  }
+
+  img {
+    width: 90%;
+    max-width: 650px;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+  }
+
+  .activity {
+    background: #f9fbff;
+    border-left: 5px solid #136f63;
+    border-radius: 8px;
+    padding: 14px 18px;
+    margin-top: 14px;
+  }
+
+  .toggle-btn {
+    background: #136f63;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 9px 16px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.2s;
+    margin-top: 10px;
+  }
+
+  .toggle-btn:hover {
+    background: #0f5b52;
+    transform: translateY(-1px);
+  }
+
+  .answer {
+    display: none;
+    margin-top: 10px;
+    background: #eef3ff;
+    border-radius: 8px;
+    padding: 12px 16px;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 16px;
+    background: #fff;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.04);
+  }
+  th, td {
+    text-align: left;
+    padding: 12px 16px;
+    border-bottom: 1px solid #eee;
+  }
+  th {
+    background: #f3f7ff;
+    color: #174ea6;
+  }
+
+  .quiz-button {
+    display: inline-block;
+    background-color: #136f63;
+    color: white;
+    padding: 13px 26px;
+    border-radius: 10px;
+    border: none;
+    font-weight: bold;
+    font-size: 17px;
+    cursor: pointer;
+    transition: 0.2s;
+    margin-top: 22px;
+  }
+
+  .quiz-button:hover { background-color: #0f5b52; }
+</style>
+</head>
+
+<body>
+
+<h1>Lesson 3: Mendel’s Second Law — Law of Segregation</h1>
+<p>
+Mendel’s <strong>Law of Segregation</strong> explains how traits are inherited from parents to offspring.
+It states that each organism carries two alleles for each trait, and these alleles separate during gamete formation — 
+so each gamete receives only one allele from each pair.
+</p>
+
+<!-- SECTION 1 -->
+<div class="section">
+  <h2>1. What is Segregation?</h2>
+  <p>
+    The Law of Segregation states that the two alleles for each trait <strong>separate during the formation of gametes</strong>.
+    This ensures that offspring receive one allele from each parent.
+  </p>
+  <div class="image">
+    <img src="https://i.imgur.com/p6fg9w1.png" alt="Law of Segregation Diagram">
+    <p><em>Each gamete gets only one allele for a given trait (T or t).</em></p>
+  </div>
+  <p>
+    For example, a pea plant with the genotype <strong>Tt</strong> (tall and short alleles) can form gametes that contain either <strong>T</strong> or <strong>t</strong>, 
+    but not both at the same time.
+  </p>
+</div>
+
+<!-- SECTION 2 -->
+<div class="section">
+  <h2>2. Gamete Formation and Allele Separation</h2>
+  <p>
+    During <strong>meiosis</strong>, the process that forms gametes (sperm and egg cells), 
+    the pair of alleles separate so that each gamete receives only one allele per gene.
+  </p>
+  <p>
+    When fertilization occurs, the offspring again have two alleles — one from the mother and one from the father.
+  </p>
+
+  <div class="image">
+    <img src="https://i.imgur.com/ZJzVDr1.png" alt="Gamete Formation Allele Separation">
+  </div>
+
+  <div class="activity">
+    <h3>Activity 1: Apply What You Learned</h3>
+    <p>
+      A pea plant has genotype Tt. What kinds of gametes can it produce according to the Law of Segregation?
+    </p>
+    <button class="toggle-btn" onclick="toggleAnswer(this)">Show Answer</button>
+    <div class="answer">
+      <p>
+        It produces two types of gametes — one carrying <strong>T</strong> and one carrying <strong>t</strong>.
+      </p>
+    </div>
+  </div>
+</div>
+
+<!-- SECTION 3 -->
+<div class="section">
+  <h2>3. Monohybrid Cross Example (Tt × Tt)</h2>
+  <p>
+    Let’s look at a classic example of the Law of Segregation using a <strong>Punnett Square</strong>.
+    In a cross between two heterozygous tall plants (Tt × Tt):
+  </p>
+
+  <div class="image">
+    <img src="https://i.imgur.com/RNlZRxE.png" alt="Punnett Square Tt x Tt">
+  </div>
+
+  <table>
+    <tr><th>Possible Genotypes</th><th>Genotypic Ratio</th><th>Phenotypic Ratio</th></tr>
+    <tr><td>TT, Tt, tt</td><td>1 : 2 : 1</td><td>3 Tall : 1 Short</td></tr>
+  </table>
+
+  <div class="activity">
+    <h3>Activity 2: Predict the Offspring</h3>
+    <p>
+      If you cross two heterozygous tall pea plants (Tt × Tt), what percentage of the offspring will be short?
+    </p>
+    <button class="toggle-btn" onclick="toggleAnswer(this)">Show Answer</button>
+    <div class="answer">
+      <p>
+        25% of the offspring will be short (<strong>tt</strong>), as both recessive alleles must combine.
+      </p>
+    </div>
+  </div>
+</div>
+
+<!-- SECTION 4 -->
+<div class="section">
+  <h2>4. Activities — Genotype Ratio Practice</h2>
+
+  <div class="activity">
+    <h3>Activity 3: Practice Problem</h3>
+    <p>
+      Cross a homozygous dominant (TT) tall plant with a homozygous recessive (tt) short plant.  
+      What is the expected genotype and phenotype of all offspring?
+    </p>
+    <button class="toggle-btn" onclick="toggleAnswer(this)">Show Answer</button>
+    <div class="answer">
+      <p>
+        Genotype: 100% Tt <br>
+        Phenotype: 100% Tall (dominant trait expressed)
+      </p>
+    </div>
+  </div>
+
+  <div class="activity">
+    <h3>Activity 4: Apply the Ratio</h3>
+    <p>
+      In a cross between Tt × tt, what are the expected genotype and phenotype ratios?
+    </p>
+    <button class="toggle-btn" onclick="toggleAnswer(this)">Show Answer</button>
+    <div class="answer">
+      <p>
+        Genotypes: Tt (50%), tt (50%) <br>
+        Phenotypes: 50% Tall, 50% Short
+      </p>
+    </div>
+  </div>
+</div>
+
+<!-- SECTION 5 -->
+<div class="section">
+  <h2>5. Summary — Law of Segregation</h2>
+  <ul>
+    <li>Each trait is controlled by two alleles — one from each parent.</li>
+    <li>Alleles separate during gamete formation (meiosis).</li>
+    <li>Each gamete carries only one allele for each trait.</li>
+    <li>When gametes unite during fertilization, they restore the pair of alleles in offspring.</li>
+  </ul>
+
+  <div class="image">
+    <img src="https://i.imgur.com/Zmg8d6A.png" alt="Law of Segregation Model Diagram">
+    <p><em>Visual model showing segregation and recombination of alleles during gamete formation and fertilization.</em></p>
+  </div>
+</div>
+
+<!-- KEY TERMS -->
+<div class="section">
+  <h2>Key Terms and Simple Meanings</h2>
+  <table>
+    <tr><th>Term</th><th>Meaning</th></tr>
+    <tr><td>Allele</td><td>Different versions of the same gene (e.g., T or t).</td></tr>
+    <tr><td>Segregation</td><td>Separation of alleles during gamete formation.</td></tr>
+    <tr><td>Gamete</td><td>Reproductive cell (sperm or egg) carrying one allele per gene.</td></tr>
+    <tr><td>Genotypic Ratio</td><td>Proportion of genotypes (e.g., 1:2:1).</td></tr>
+    <tr><td>Phenotypic Ratio</td><td>Proportion of physical traits (e.g., 3 tall : 1 short).</td></tr>
+  </table>
+</div>
+
+<div style="text-align:center; margin-top:25px;">
+  <button class="quiz-button" id="takeQuizBtn">Take the Lesson Quiz →</button>
+</div>
+
+<script>
+function toggleAnswer(btn) {
+  const answer = btn.nextElementSibling;
+  const visible = answer.style.display === "block";
+  answer.style.display = visible ? "none" : "block";
+  btn.textContent = visible ? "Show Answer" : "Hide Answer";
+}
+
+document.getElementById("takeQuizBtn").addEventListener("click", () => {
+  window.parent.postMessage({
+    type: "openQuiz",
+    quiz: "chapter2_lesson3_quiz.html"
+  }, "*");
+});
+</script>
+
+</body>
+</html>
