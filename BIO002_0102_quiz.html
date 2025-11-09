@@ -5,7 +5,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Chapter 1 – Lesson 2 Quiz: Characteristics of Living Things</title>
 <style>
-  /* === Base Page === */
   body {
     font-family: "Segoe UI", Arial, sans-serif;
     background: linear-gradient(135deg, #e8f9f1, #f7faff);
@@ -18,7 +17,6 @@
     min-height: 100vh;
   }
 
-  /* === Quiz Card === */
   .quiz-container {
     background: #ffffff;
     border-radius: 18px;
@@ -27,7 +25,6 @@
     width: 95%;
     max-width: 850px;
     text-align: center;
-    position: relative;
   }
 
   h2 {
@@ -36,7 +33,6 @@
     font-size: 1.8em;
   }
 
-  /* === Progress Bar === */
   .progress-wrapper {
     background: #e9f5ef;
     border-radius: 8px;
@@ -44,14 +40,12 @@
     width: 100%;
     margin-bottom: 25px;
     overflow: hidden;
-    box-shadow: inset 0 1px 4px rgba(0,0,0,0.1);
   }
   .progress-bar {
     height: 100%;
     background: linear-gradient(to right, #136f63, #2b7de9);
     width: 0%;
     transition: width 0.4s ease;
-    border-radius: 8px;
   }
   .progress-text {
     text-align: right;
@@ -61,19 +55,20 @@
     font-weight: 600;
   }
 
-  /* === Questions === */
   .question {
     font-size: 1.3em;
     font-weight: 600;
     color: #174ea6;
     margin-bottom: 20px;
   }
+
   .choices {
     display: flex;
     flex-direction: column;
     gap: 12px;
-    margin-bottom: 25px;
+    margin-bottom: 20px;
   }
+
   .choice {
     background: #e8ecf8;
     border: none;
@@ -84,10 +79,22 @@
     font-size: 1.05em;
     transition: all 0.2s ease;
   }
-  .choice:hover { background: #d3dbf8; transform: translateY(-2px); }
-  .choice.selected { background: #174ea6; color: #fff; transform: scale(1.02); }
 
-  /* === Buttons === */
+  .choice:hover { background: #d3dbf8; transform: translateY(-2px); }
+  .choice.correct { background: #136f63; color: #fff; }
+  .choice.incorrect { background: #e57373; color: #fff; }
+
+  .explanation {
+    background: #eef3ff;
+    border-radius: 10px;
+    padding: 14px 18px;
+    text-align: left;
+    margin-bottom: 20px;
+    font-size: 0.95em;
+    color: #174ea6;
+    display: none;
+  }
+
   .next-btn {
     background: #136f63;
     color: #fff;
@@ -99,9 +106,9 @@
     font-weight: bold;
     transition: 0.2s;
   }
+
   .next-btn:hover { background: #0f5b52; }
 
-  /* === Result Section === */
   .result {
     font-size: 1.4em;
     font-weight: bold;
@@ -133,6 +140,7 @@
     cursor: pointer;
     transition: all 0.2s ease;
   }
+
   .quiz-btn:hover { background: #d3dbf8; transform: translateY(-2px); }
   .quiz-btn.primary { background: #136f63; color: #fff; }
   .quiz-btn.primary:hover { background: #0f5b52; }
@@ -157,19 +165,39 @@
 
 <script>
   const quizData = [
-    { q: "1. Which of the following is NOT a characteristic of living things?", c: ["Reproduction", "Metabolism", "Decay", "Response to stimuli"], a: 2 },
-    { q: "2. The ability of an organism to maintain a stable internal environment is called ____.", c: ["Metabolism", "Homeostasis", "Adaptation", "Evolution"], a: 1 },
-    { q: "3. Which characteristic of life involves using energy to perform activities?", c: ["Metabolism", "Growth", "Adaptation", "Response"], a: 0 },
-    { q: "4. Which example shows response to stimuli?", c: ["A seed growing into a plant", "A person pulling away from a hot surface", "A fish producing offspring", "A leaf falling from a tree"], a: 1 },
-    { q: "5. A caterpillar turning into a butterfly demonstrates which characteristic of life?", c: ["Metabolism", "Growth and development", "Homeostasis", "Reproduction"], a: 1 },
-    { q: "6. The fact that giraffes have long necks to reach tall trees is an example of ____.", c: ["Homeostasis", "Adaptation", "Metabolism", "Organization"], a: 1 },
-    { q: "7. What is the smallest structural unit of life?", c: ["Atom", "Molecule", "Cell", "Organ"], a: 2 },
-    { q: "8. Why is a virus often debated as living or nonliving?", c: ["It cannot evolve", "It lacks cells and metabolism", "It cannot move", "It lacks DNA"], a: 1 },
-    { q: "9. The process by which organisms pass traits to offspring is called ____.", c: ["Metabolism", "Adaptation", "Reproduction", "Homeostasis"], a: 2 },
-    { q: "10. Which of the following characteristics allows life to continue despite environmental change?", c: ["Response to stimuli", "Adaptation through evolution", "Organization", "Growth"], a: 1 }
+    { q: "1. Which of the following is NOT a characteristic of living things?",
+      c: ["Reproduction", "Metabolism", "Decay", "Response to stimuli"], a: 2,
+      e: "Decay is a process of decomposition that occurs after death, not a characteristic of living things." },
+    { q: "2. The ability of an organism to maintain a stable internal environment is called ____.",
+      c: ["Metabolism", "Homeostasis", "Adaptation", "Evolution"], a: 1,
+      e: "Homeostasis keeps internal conditions constant, such as body temperature and pH, despite environmental changes." },
+    { q: "3. Which characteristic of life involves using energy to perform activities?",
+      c: ["Metabolism", "Growth", "Adaptation", "Response"], a: 0,
+      e: "Metabolism includes all chemical reactions in an organism that provide energy for growth, repair, and activity." },
+    { q: "4. Which example shows response to stimuli?",
+      c: ["A seed growing into a plant", "A person pulling away from a hot surface", "A fish producing offspring", "A leaf falling from a tree"], a: 1,
+      e: "Pulling away from a hot surface is a reflex action showing how living things respond to external stimuli." },
+    { q: "5. A caterpillar turning into a butterfly demonstrates which characteristic of life?",
+      c: ["Metabolism", "Growth and development", "Homeostasis", "Reproduction"], a: 1,
+      e: "This process shows growth and development — organisms undergo changes as they mature." },
+    { q: "6. The fact that giraffes have long necks to reach tall trees is an example of ____.",
+      c: ["Homeostasis", "Adaptation", "Metabolism", "Organization"], a: 1,
+      e: "Adaptation helps species survive better in their environment, as seen in giraffes evolving longer necks to access food." },
+    { q: "7. What is the smallest structural unit of life?",
+      c: ["Atom", "Molecule", "Cell", "Organ"], a: 2,
+      e: "The cell is the basic unit of life — all living things are made of one or more cells." },
+    { q: "8. Why is a virus often debated as living or nonliving?",
+      c: ["It cannot evolve", "It lacks cells and metabolism", "It cannot move", "It lacks DNA"], a: 1,
+      e: "Viruses cannot reproduce or metabolize without a host, so they are not considered fully living organisms." },
+    { q: "9. The process by which organisms pass traits to offspring is called ____.",
+      c: ["Metabolism", "Adaptation", "Reproduction", "Homeostasis"], a: 2,
+      e: "Reproduction allows organisms to pass genetic information and ensure the continuation of their species." },
+    { q: "10. Which of the following characteristics allows life to continue despite environmental change?",
+      c: ["Response to stimuli", "Adaptation through evolution", "Organization", "Growth"], a: 1,
+      e: "Through evolution, species adapt over time to survive environmental challenges and changing conditions." }
   ];
 
-  let current = 0, score = 0, selected = null;
+  let current = 0, score = 0;
   const quizBox = document.getElementById("quizBox");
   const nextBtn = document.getElementById("nextBtn");
   const progressText = document.getElementById("progressText");
@@ -178,7 +206,11 @@
   function showQuestion() {
     const q = quizData[current];
     updateProgress();
-    quizBox.innerHTML = `<div class='question'>${q.q}</div><div class='choices'></div>`;
+    quizBox.innerHTML = `
+      <div class='question'>${q.q}</div>
+      <div class='choices'></div>
+      <div class='explanation' id='explanation'></div>
+    `;
     const choicesContainer = quizBox.querySelector(".choices");
     q.c.forEach((choice, i) => {
       const btn = document.createElement("button");
@@ -188,19 +220,23 @@
       choicesContainer.appendChild(btn);
     });
     nextBtn.style.display = "none";
-    selected = null;
   }
 
   function selectChoice(i) {
-    selected = i;
-    document.querySelectorAll(".choice").forEach((btn, idx) =>
-      btn.classList.toggle("selected", idx === i)
-    );
+    const q = quizData[current];
+    const explanationBox = document.getElementById("explanation");
+    document.querySelectorAll(".choice").forEach((btn, idx) => {
+      btn.disabled = true;
+      if (idx === q.a) btn.classList.add("correct");
+      if (idx === i && idx !== q.a) btn.classList.add("incorrect");
+    });
+    if (i === q.a) score++;
+    explanationBox.innerHTML = `<strong>Explanation:</strong> ${q.e}`;
+    explanationBox.style.display = "block";
     nextBtn.style.display = "inline-block";
   }
 
   nextBtn.addEventListener("click", () => {
-    if (selected === quizData[current].a) score++;
     current++;
     if (current < quizData.length) showQuestion(); else showResult();
   });
