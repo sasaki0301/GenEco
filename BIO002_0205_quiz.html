@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Chapter 2 – Comprehensive Assessment: Mendelian Genetics</title>
+<style>
+  body {
+    font-family: "Segoe UI", Arial, sans-serif;
+    background: linear-gradient(135deg, #e8f9f1, #f7faff);
+    margin: 0;
+    padding: 40px 20px;
+    color: #222;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+  }
+
+  .quiz-container {
+    background: #ffffff;
+    border-radius: 18px;
+    padding: 40px 50px;
+    box-shadow: 0 8px 28px rgba(0, 0, 0, 0.08);
+    width: 95%;
+    max-width: 850px;
+    text-align: center;
+    position: relative;
+  }
+
+  h2 {
+    color: #136f63;
+    margin-bottom: 25px;
+    font-size: 1.8em;
+  }
+
+  .progress-wrapper {
+    background: #e9f5ef;
+    border-radius: 8px;
+    height: 14px;
+    width: 100%;
+    margin-bottom: 25px;
+    overflow: hidden;
+    box-shadow: inset 0 1px 4px rgba(0,0,0,0.1);
+  }
+
+  .progress-bar {
+    height: 100%;
+    background: linear-gradient(to right, #136f63, #2b7de9);
+    width: 0%;
+    transition: width 0.4s ease;
+    border-radius: 8px;
+  }
+
+  .progress-text {
+    text-align: right;
+    font-size: 0.95em;
+    color: #174ea6;
+    margin-bottom: 10px;
+    font-weight: 600;
+  }
+
+  .question {
+    font-size: 1.3em;
+    font-weight: 600;
+    color: #174ea6;
+    margin-bottom: 20px;
+  }
+
+  .choices {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 25px;
+  }
+
+  .choice {
+    background: #e8ecf8;
+    border: none;
+    border-radius: 10px;
+    padding: 14px 18px;
+    cursor: pointer;
+    text-align: left;
+    font-size: 1.05em;
+    transition: all 0.2s ease;
+  }
+
+  .choice:hover { background: #d3dbf8; transform: translateY(-2px); }
+  .choice.selected { background: #174ea6; color: #fff; transform: scale(1.02); }
+
+  .next-btn {
+    background: #136f63;
+    color: #fff;
+    border: none;
+    padding: 12px 26px;
+    border-radius: 10px;
+    font-size: 1.05em;
+    cursor: pointer;
+    font-weight: bold;
+    transition: 0.2s;
+  }
+
+  .next-btn:hover { background: #0f5b52; }
+
+  .result {
+    font-size: 1.4em;
+    font-weight: bold;
+    color: #174ea6;
+    margin-top: 20px;
+  }
+
+  .stars {
+    font-size: 2.5em;
+    margin-top: 10px;
+    margin-bottom: 5px;
+  }
+
+  .quiz-nav {
+    margin-top: 25px;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .quiz-btn {
+    background: #e8ecf8;
+    color: #174ea6;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 20px;
+    font-size: 0.95em;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+
+  .quiz-btn:hover { background: #d3dbf8; transform: translateY(-2px); }
+  .quiz-btn.primary { background: #136f63; color: #fff; }
+  .quiz-btn.primary:hover { background: #0f5b52; }
+
+  @media (max-width: 600px) {
+    .quiz-container { padding: 25px; }
+    .question { font-size: 1.1em; }
+    .stars { font-size: 2em; }
+  }
+</style>
+</head>
+
+<body>
+<div class="quiz-container">
+  <h2>Chapter 2 – Comprehensive Assessment: Mendelian Genetics</h2>
+  <div class="progress-text" id="progressText">Question 1 of 25</div>
+  <div class="progress-wrapper"><div class="progress-bar" id="progressBar"></div></div>
+
+  <div id="quizBox"></div>
+  <button id="nextBtn" class="next-btn" style="display:none;">Next</button>
+</div>
+
+<script>
+const quizData = [
+  { q: "1. Who is known as the Father of Genetics?", c: ["Charles Darwin", "Gregor Mendel", "Watson and Crick", "Louis Pasteur"], a: 1 },
+  { q: "2. What is heredity?", c: ["Study of cells", "Passing of traits from parents to offspring", "Change of species over time", "Variation in environment"], a: 1 },
+  { q: "3. The basic unit of heredity is the ____.", c: ["Cell", "Gene", "Chromosome", "DNA"], a: 1 },
+  { q: "4. Alleles are ____.", c: ["Different forms of a gene", "Different types of chromosomes", "Proteins made by DNA", "Enzymes that copy DNA"], a: 0 },
+  { q: "5. The physical appearance of an organism is called its ____.", c: ["Genotype", "Phenotype", "Heredity", "Recessive trait"], a: 1 },
+  { q: "6. If a plant’s genotype is Tt, it is ____.", c: ["Homozygous dominant", "Homozygous recessive", "Heterozygous", "Purebred"], a: 2 },
+  { q: "7. In Mendel’s experiment, tall (T) is dominant and short (t) is recessive. Which offspring genotype produces tall plants?", c: ["TT and Tt", "Tt and tt", "TT only", "tt only"], a: 0 },
+  { q: "8. Which of the following best describes the Law of Dominance?", c: ["Genes separate during meiosis", "Dominant alleles mask recessive alleles", "Traits blend equally", "Alleles for traits assort independently"], a: 1 },
+  { q: "9. Which of these represents a homozygous recessive genotype?", c: ["TT", "Tt", "tt", "tT"], a: 2 },
+  { q: "10. The Law of Segregation states that:", c: ["Each gene has multiple alleles", "Each trait is controlled by two alleles that separate during gamete formation", "Alleles for different traits assort independently", "Dominant traits are always visible"], a: 1 },
+  { q: "11. A cross between two heterozygous (Tt × Tt) individuals produces a ratio of:", c: ["1:1", "3:1", "9:3:3:1", "2:2"], a: 1 },
+  { q: "12. What gametes can an organism with genotype Aa produce?", c: ["AA and aa", "A and a", "Aa only", "AA only"], a: 1 },
+  { q: "13. The Law of Independent Assortment applies when:", c: ["Traits are on the same chromosome", "Genes for different traits separate independently", "Only one allele controls a trait", "Traits blend together"], a: 1 },
+  { q: "14. In a dihybrid cross RrYy × RrYy, how many types of gametes can each parent produce?", c: ["2", "3", "4", "8"], a: 2 },
+  { q: "15. The phenotypic ratio in a dihybrid cross is:", c: ["3:1", "1:2:1", "9:3:3:1", "4:1"], a: 2 },
+  { q: "16. In Mendel’s pea plant experiments, which traits did he study?", c: ["Height and eye color", "Seed shape and color", "Leaf size and color", "Stem length and flower shape"], a: 1 },
+  { q: "17. An individual with genotype rr produces which type of gametes?", c: ["r and R", "R only", "r only", "RR"], a: 2 },
+  { q: "18. Which statement is true about heterozygous individuals?", c: ["They have two dominant alleles", "They have two recessive alleles", "They show the dominant trait", "They show a blend of both traits"], a: 2 },
+  { q: "19. Independent assortment leads to:", c: ["Identical offspring", "Less variation", "Greater genetic diversity", "Mutation"], a: 2 },
+  { q: "20. The genotypic ratio from Tt × Tt is:", c: ["1 TT : 2 Tt : 1 tt", "3 TT : 1 tt", "2 TT : 2 Tt", "All Tt"], a: 0 },
+  { q: "21. What term describes a cross that tracks one trait?", c: ["Dihybrid cross", "Monohybrid cross", "Trihybrid cross", "Codominant cross"], a: 1 },
+  { q: "22. Which pair correctly matches the law with its description?", c: ["Dominance – traits blend", "Segregation – alleles separate", "Independent Assortment – traits mix randomly", "Dominance – alleles separate"], a: 1 },
+  { q: "23. If a genotype is YY, the phenotype is ____.", c: ["Heterozygous", "Recessive", "Homozygous dominant", "Hybrid"], a: 2 },
+  { q: "24. Which of the following demonstrates codominance?", c: ["Red and white flowers producing pink offspring", "A red and white cow with both colors visible", "Green peas crossing with yellow peas producing green", "Tall and short plants producing medium plants"], a: 1 },
+  { q: "25. Which of the following contributes to variation in sexually reproducing organisms?", c: ["Mitosis", "Independent Assortment and Crossing Over", "Binary fission", "Self-pollination"], a: 1 }
+];
+
+let current = 0, score = 0, selected = null;
+const quizBox = document.getElementById("quizBox");
+const nextBtn = document.getElementById("nextBtn");
+const progressText = document.getElementById("progressText");
+const progressBar = document.getElementById("progressBar");
+
+function showQuestion() {
+  const q = quizData[current];
+  updateProgress();
+  quizBox.innerHTML = `<div class='question'>${q.q}</div><div class='choices'></div>`;
+  const choicesContainer = quizBox.querySelector(".choices");
+  q.c.forEach((choice, i) => {
+    const btn = document.createElement("button");
+    btn.className = "choice";
+    btn.innerHTML = choice;
+    btn.addEventListener("click", () => selectChoice(i));
+    choicesContainer.appendChild(btn);
+  });
+  nextBtn.style.display = "none";
+  selected = null;
+}
+
+function selectChoice(i) {
+  selected = i;
+  document.querySelectorAll(".choice").forEach((btn, idx) =>
+    btn.classList.toggle("selected", idx === i)
+  );
+  nextBtn.style.display = "inline-block";
+}
+
+nextBtn.addEventListener("click", () => {
+  if (selected === quizData[current].a) score++;
+  current++;
+  if (current < quizData.length) showQuestion(); else showResult();
+});
+
+function updateProgress() {
+  const percent = (current / quizData.length) * 100;
+  progressBar.style.width = percent + "%";
+  progressText.textContent = `Question ${current + 1} of ${quizData.length}`;
+}
+
+function getStarRating(percent) {
+  if (percent === 100) return "⭐️⭐️⭐️";
+  else if (percent >= 90) return "⭐️⭐️☆";
+  else if (percent >= 80) return "⭐️☆☆";
+  else return "☆☆☆";
+}
+
+function showResult() {
+  progressBar.style.width = "100%";
+  progressText.textContent = "Quiz Completed";
+  const percent = Math.round((score / quizData.length) * 100);
+  const passed = percent >= 80;
+
+  quizBox.innerHTML = `
+    <div class='stars'>${getStarRating(percent)}</div>
+    <div class='result'>You scored ${score}/${quizData.length} (${percent}%)</div>
+    <div class='quiz-nav'>
+      <button class='quiz-btn' id='backBtn'>⬅ Back</button>
+      <button class='quiz-btn' id='retryBtn'>🔁 Retry</button>
+      <button class='quiz-btn primary' id='nextLessonBtn' ${passed ? "" : "disabled"}>➡ Next Chapter</button>
+    </div>
+  `;
+
+  nextBtn.style.display = "none";
+  window.parent.postMessage({ type: "quizResult", score: percent, passed }, "*");
+
+  document.getElementById("retryBtn").addEventListener("click", retryQuiz);
+  document.getElementById("backBtn").addEventListener("click", () => window.parent.postMessage({ type: "quizBack" }, "*"));
+  document.getElementById("nextLessonBtn").addEventListener("click", () => { if (passed) window.parent.postMessage({ type: "quizNextLesson" }, "*"); });
+}
+
+function retryQuiz() { current = 0; score = 0; showQuestion(); }
+
+showQuestion();
+</script>
+</body>
+</html>
