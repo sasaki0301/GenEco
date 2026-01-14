@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Chapter 3 – Lesson 1 Quiz: Non-Mendelian Inheritance Overview</title>
+
+<style>
+  body {
+    font-family: "Segoe UI", Arial, sans-serif;
+    background: linear-gradient(135deg, #e8f9f1, #f7faff);
+    margin: 0;
+    padding: 40px 20px;
+    color: #222;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+  }
+
+  .quiz-container {
+    background: #ffffff;
+    border-radius: 18px;
+    padding: 40px 50px;
+    box-shadow: 0 8px 28px rgba(0, 0, 0, 0.08);
+    width: 95%;
+    max-width: 850px;
+    text-align: center;
+  }
+
+  h2 {
+    color: #136f63;
+    margin-bottom: 25px;
+    font-size: 1.8em;
+  }
+
+  .progress-text {
+    text-align: right;
+    font-size: 0.95em;
+    color: #174ea6;
+    margin-bottom: 10px;
+    font-weight: 600;
+  }
+
+  .progress-wrapper {
+    background: #e9f5ef;
+    border-radius: 8px;
+    height: 14px;
+    width: 100%;
+    margin-bottom: 25px;
+    overflow: hidden;
+  }
+
+  .progress-bar {
+    height: 100%;
+    background: linear-gradient(to right, #136f63, #2b7de9);
+    width: 0%;
+    transition: width 0.4s ease;
+  }
+
+  .question {
+    font-size: 1.3em;
+    font-weight: 600;
+    color: #174ea6;
+    margin-bottom: 20px;
+  }
+
+  .choices {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 18px;
+  }
+
+  .choice {
+    background: #e8ecf8;
+    border: none;
+    border-radius: 10px;
+    padding: 14px 18px;
+    cursor: pointer;
+    text-align: left;
+    font-size: 1.05em;
+    transition: 0.2s;
+  }
+
+  .choice:hover { background: #d3dbf8; }
+  .choice.selected { background: #174ea6; color: #fff; }
+
+  .choice.correct { background: #2e7d32; color: #fff; }
+  .choice.wrong { background: #c62828; color: #fff; }
+
+  .explanation {
+    display: none;
+    background: #eef3ff;
+    padding: 14px;
+    border-radius: 8px;
+    margin-top: 10px;
+    font-size: 0.95em;
+    text-align: left;
+  }
+
+  .next-btn {
+    background: #136f63;
+    color: #fff;
+    border: none;
+    padding: 12px 26px;
+    border-radius: 10px;
+    font-size: 1.05em;
+    cursor: pointer;
+    font-weight: bold;
+    margin-top: 18px;
+  }
+
+  .stars {
+    font-size: 2.5em;
+    margin-top: 10px;
+  }
+
+  .result {
+    font-size: 1.4em;
+    font-weight: bold;
+    color: #174ea6;
+    margin-top: 12px;
+  }
+
+  .quiz-nav {
+    margin-top: 25px;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+  }
+
+  .quiz-btn {
+    background: #e8ecf8;
+    color: #174ea6;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 20px;
+    cursor: pointer;
+  }
+
+  .quiz-btn.primary {
+    background: #136f63;
+    color: #fff;
+  }
+</style>
+</head>
+
+<body>
+
+<div class="quiz-container">
+  <h2>Non-Mendelian Inheritance – Quiz</h2>
+  <div class="progress-text" id="progressText">Question 1 of 10</div>
+  <div class="progress-wrapper">
+    <div class="progress-bar" id="progressBar"></div>
+  </div>
+
+  <div id="quizBox"></div>
+  <button id="nextBtn" class="next-btn" style="display:none;">Next</button>
+</div>
+
+<script>
+const quizData = [
+  {
+    q: "1. What does non-Mendelian inheritance describe?",
+    c: [
+      "Traits inherited only from the mother",
+      "Inheritance patterns that do not follow Mendel’s laws exactly",
+      "Traits controlled by one dominant allele only",
+      "Inheritance involving only mutations"
+    ],
+    a: 1,
+    e: "Non-Mendelian inheritance includes patterns that do not strictly follow Mendel’s laws, such as co-dominance and polygenic traits."
+  },
+  {
+    q: "2. Why do some traits not follow Mendel’s simple ratios?",
+    c: [
+      "Genes are always recessive",
+      "Traits may be influenced by multiple alleles or genes",
+      "Meiosis does not occur",
+      "Traits are inherited randomly"
+    ],
+    a: 1,
+    e: "Many traits involve multiple genes or alleles, leading to more complex inheritance patterns."
+  },
+  {
+    q: "3. Which inheritance pattern shows both alleles fully expressed?",
+    c: [
+      "Incomplete dominance",
+      "Co-dominance",
+      "Recessive inheritance",
+      "Polygenic inheritance"
+    ],
+    a: 1,
+    e: "In co-dominance, both alleles are expressed equally, such as in AB blood type."
+  },
+  {
+    q: "4. A pink flower produced from red and white parents shows:",
+    c: [
+      "Co-dominance",
+      "Incomplete dominance",
+      "Multiple alleles",
+      "Independent assortment"
+    ],
+    a: 1,
+    e: "Incomplete dominance results in an intermediate phenotype between two parental traits."
+  },
+  {
+    q: "5. Human blood type is an example of:",
+    c: [
+      "Incomplete dominance",
+      "Polygenic inheritance",
+      "Multiple alleles",
+      "Sex-linked inheritance"
+    ],
+    a: 2,
+    e: "Blood type has three alleles (A, B, and O), making it an example of multiple alleles."
+  },
+  {
+    q: "6. Which trait is controlled by many genes?",
+    c: [
+      "Blood type",
+      "Flower color in peas",
+      "Human height",
+      "Eye color in fruit flies"
+    ],
+    a: 2,
+    e: "Human height is a polygenic trait influenced by many genes."
+  },
+  {
+    q: "7. Polygenic inheritance usually results in:",
+    c: [
+      "Discrete traits",
+      "Two clear phenotypes",
+      "Continuous variation",
+      "Only dominant traits"
+    ],
+    a: 2,
+    e: "Polygenic traits show a wide range of phenotypes rather than distinct categories."
+  },
+  {
+    q: "8. Which of the following is NOT a type of non-Mendelian inheritance?",
+    c: [
+      "Co-dominance",
+      "Incomplete dominance",
+      "Independent assortment",
+      "Polygenic inheritance"
+    ],
+    a: 2,
+    e: "Independent assortment is one of Mendel’s laws, not a non-Mendelian pattern."
+  },
+  {
+    q: "9. Sex-linked traits are usually carried on which chromosome?",
+    c: [
+      "Autosomes",
+      "X chromosome",
+      "Y chromosome only",
+      "Mitochondrial DNA"
+    ],
+    a: 1,
+    e: "Many sex-linked traits are found on the X chromosome, such as color blindness."
+  },
+  {
+    q: "10. Why is non-Mendelian inheritance important?",
+    c: [
+      "It replaces Mendel’s laws",
+      "It explains real-life genetic variation",
+      "It applies only to plants",
+      "It occurs only in mutations"
+    ],
+    a: 1,
+    e: "Non-Mendelian inheritance helps explain complex traits and genetic diversity seen in nature."
+  }
+];
+
+let current = 0, score = 0, selected = null;
+const quizBox = document.getElementById("quizBox");
+const nextBtn = document.getElementById("nextBtn");
+const progressText = document.getElementById("progressText");
+const progressBar = document.getElementById("progressBar");
+
+function showQuestion() {
+  const q = quizData[current];
+  updateProgress();
+
+  quizBox.innerHTML = `
+    <div class="question">${q.q}</div>
+    <div class="choices"></div>
+    <div class="explanation" id="explanation"></div>
+  `;
+
+  const choicesContainer = quizBox.querySelector(".choices");
+
+  q.c.forEach((choice, i) => {
+    const btn = document.createElement("button");
+    btn.className = "choice";
+    btn.textContent = choice;
+    btn.onclick = () => selectChoice(i, btn);
+    choicesContainer.appendChild(btn);
+  });
+
+  nextBtn.style.display = "none";
+}
+
+function selectChoice(i, btn) {
+  if (selected !== null) return;
+  selected = i;
+
+  const q = quizData[current];
+  const explanation = document.getElementById("explanation");
+
+  document.querySelectorAll(".choice").forEach((b, idx) => {
+    if (idx === q.a) b.classList.add("correct");
+    if (idx === i && i !== q.a) b.classList.add("wrong");
+    b.disabled = true;
+  });
+
+  if (i === q.a) score++;
+
+  explanation.innerHTML = `<strong>Explanation:</strong> ${q.e}`;
+  explanation.style.display = "block";
+
+  nextBtn.style.display = "inline-block";
+}
+
+nextBtn.onclick = () => {
+  current++;
+  selected = null;
+  if (current < quizData.length) showQuestion();
+  else showResult();
+};
+
+function updateProgress() {
+  const percent = (current / quizData.length) * 100;
+  progressBar.style.width = percent + "%";
+  progressText.textContent = `Question ${current + 1} of ${quizData.length}`;
+}
+
+function getStars(p) {
+  if (p === 100) return "⭐️⭐️⭐️";
+  if (p >= 90) return "⭐️⭐️☆";
+  if (p >= 80) return "⭐️☆☆";
+  return "☆☆☆";
+}
+
+function showResult() {
+  const percent = Math.round((score / quizData.length) * 100);
+  const passed = percent >= 80;
+
+  quizBox.innerHTML = `
+    <div class="stars">${getStars(percent)}</div>
+    <div class="result">You scored ${score}/${quizData.length} (${percent}%)</div>
+    <div class="quiz-nav">
+      <button class="quiz-btn" onclick="location.reload()">🔁 Retry</button>
+      <button class="quiz-btn primary" ${passed ? "" : "disabled"}
+        onclick="window.parent.postMessage({type:'quizNextLesson'},'*')">
+        ➡ Next Lesson
+      </button>
+    </div>
+  `;
+
+  nextBtn.style.display = "none";
+  progressText.textContent = "Quiz Completed";
+  progressBar.style.width = "100%";
+
+  window.parent.postMessage({ type: "quizResult", score: percent, passed }, "*");
+}
+
+showQuestion();
+</script>
+
+</body>
+</html>
